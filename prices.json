@@ -2,8 +2,20 @@
   "updated": "2026-10-14",
   "source": "https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/price-cbam-certificates_en",
   "cbam": [
-    {"q": "Q1 2026", "published": "7 April 2026", "price": 75.36},
-    {"q": "Q2 2026", "published": "6 July 2026", "price": 75.28},
-    {"q": "Q3 2026", "published": "5 October 2026", "price": 82.32}
+    {
+      "q": "Q1 2026",
+      "published": "7 April 2026",
+      "price": 75.36
+    },
+    {
+      "q": "Q2 2026",
+      "published": "6 July 2026",
+      "price": 75.28
+    },
+    {
+      "q": "Q3 2026",
+      "published": "5 October 2026",
+      "price": 82.32
+    }
   ]
 }
