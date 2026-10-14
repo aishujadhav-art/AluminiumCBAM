@@ -1,0 +1,27 @@
+name: Update CBAM prices
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"   # every Monday at 06:17 UTC
+  workflow_dispatch:         # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Read the latest published CBAM certificate prices
+        run: python scripts/update_prices.py
+      - name: Save prices.json if it changed
+        run: |
+          git config user.name "price-bot"
+          git config user.email "price-bot@users.noreply.github.com"
+          git add prices.json
+          git diff --cached --quiet || git commit -m "Update CBAM certificate prices"
+          git push

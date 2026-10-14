@@ -82,8 +82,10 @@ td input[readonly]{background:var(--readonly)}
 .scen label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
 .scen b{display:block}
 .scen small{color:var(--muted)}
+.scen small .sl{display:block;padding-left:12px;position:relative}.scen small .sl::before{content:"•";position:absolute;left:0}
 .callout{border:1px solid var(--line);background:var(--soft);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--ink)}
 .callout.ukn{display:flex;flex-direction:column;gap:6px;border-left:4px solid #1d3f8f}.callout.ukn p{margin:0}.callout.ukn ul{margin:6px 0;padding-left:20px}.callout.ukn summary{cursor:pointer;font-weight:600;color:var(--accent)}
+.callout.tip{background:var(--green-soft);border:1px solid #b9dcc5;border-left:4px solid var(--green);display:flex;flex-direction:column;gap:8px}.callout.tip p{margin:0}.callout.tip b{color:#155f33}
 .callout.red{background:#fdecec;border:1px solid #e5a3a3;border-left:4px solid #c62828;color:#5c1010;display:flex;flex-direction:column;gap:8px}
 .callout.red p{margin:0}.callout.red b{color:#a31515}
 .callout.warn{background:var(--warn-soft);border-color:transparent;color:var(--ink)}
@@ -160,6 +162,7 @@ details.more>summary:hover{background:var(--soft);border-radius:14px}
 .keybox{gap:18px}
 .lead b.good,.lead .good{color:var(--green)}
 .rank{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+@media (min-width:900px){.rank.c5{grid-template-columns:repeat(3,1fr)}}
 .rcard{border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0;background:var(--panel)}
 .rc-top{display:flex;gap:10px;align-items:flex-start}
 .rc-rank{flex:none;width:26px;height:26px;border-radius:99px;color:#fff;display:grid;place-items:center;font:700 13px var(--f-display)}
@@ -197,7 +200,7 @@ details.more>summary:hover{background:var(--soft);border-radius:14px}
 table.mini td,table.mini th{white-space:normal}
 .tile-n{font-family:var(--f-display);font-weight:700}
 .btn.primary.lg{font-weight:600}
-@media (max-width:700px){.topnav{position:static}.topnav .tabs{flex-wrap:nowrap;overflow-x:auto;width:100%}.topnav .tabs button{white-space:nowrap}.phead h1{font-size:26px}}
+@media (max-width:700px){.topnav{position:static}.topnav .tabs{flex-wrap:wrap;width:100%}.topnav .tabs button{white-space:nowrap;padding:6px 9px;font-size:13px}.phead h1{font-size:26px}}
 .yrpanel{border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--soft)}
 .yrbtn{align-self:flex-start;padding:5px 12px;font-size:13px}
 .yrt td,.yrt th{text-align:right}
@@ -220,6 +223,7 @@ table.mini td,table.mini th{white-space:normal}
 .kstat .k{font:500 11.5px var(--f-body);letter-spacing:0;text-transform:none;color:var(--muted)}
 .kstat .v{font:700 23px var(--f-display);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
 .kstat .v.good{color:var(--green)}
+.kstat .v.bad{color:var(--bad)}
 .kstat .s{font-size:13px;color:var(--muted)}
 .cta{background:var(--green-soft);border:1px solid #b9e0c6;border-radius:12px;padding:20px 22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
 .cta h3{color:var(--green);font-size:20px;margin-bottom:6px}
@@ -313,7 +317,7 @@ input[type=range]{width:100%;accent-color:var(--accent)}
   </div>
 
   <div class="sec">
-    <p class="callout warn"><b>Why real (verified) values matter.</b> Without verified data from your supplier, CBAM must use the EU default value: one number per country, based on how aluminium is usually made there, plus a mark up of 10% to 30%. It is the same for every tonne, so buying recycled or low carbon aluminium from that supplier does not lower your CBAM at all. With verified data, each type is charged on its real emissions and recycled metal gets its lower benchmark, so a switch to low emission aluminium really does cut the cost.</p>
+    <p class="callout warn"><b>Why real (verified) values matter.</b> Without verified data from your supplier, CBAM must use the EU default value: one number per country, based on how aluminium is usually made there, plus a mark up of 10% to 30%. It is the same for every tonne, so buying recycled or low carbon aluminium from that supplier does not lower your CBAM at all. With verified data, each type is charged on its own real emissions. Note that recycled metal is also measured against a much lower CBAM benchmark, so while free allocation lasts its CBAM saving over primary is small, and in the first years it can even need slightly more certificates per tonne. The saving grows quickly as free allocation ends between 2030 and 2034.</p>
   </div>
 
   <div class="sec">
@@ -335,8 +339,8 @@ input[type=range]{width:100%;accent-color:var(--accent)}
       <p class="info"><b>Imported sheet.</b> The sheet is made in another country and shipped to you. CBAM, if any, is paid by you.</p>
       <p class="info"><b>EU made.</b> Every step happens in the EU. No CBAM; the EU carbon price is built into the price.</p>
       <p class="info"><b>EU smelted and rolled.</b> Alumina comes from outside the EU (it carries no CBAM); smelting and rolling happen in the EU.</p>
-      <p class="info"><b>Imported ingot, EU rolled.</b> Ingots are made outside the EU and rolled in the EU; the EU roller pays CBAM on them and passes it on.</p>
-      <p class="info"><b>Imported ingot, UK rolled.</b> Only for UK buyers: ingots are imported into the UK and rolled there; the UK roller pays UK CBAM from 2027.</p>
+      <p class="info"><b>Only rolling operations in EU.</b> Ingots are made outside the EU and only the rolling happens in the EU; the EU roller pays CBAM on the ingots and passes it on.</p>
+      <p class="info"><b>Only rolling operations in UK.</b> Only for UK buyers: ingots are imported into the UK and only the rolling happens there; the UK roller pays UK CBAM from 2027 and UK ETS on rolling.</p>
     </div>
   </div>
 
@@ -417,9 +421,9 @@ input[type=range]{width:100%;accent-color:var(--accent)}
     <div class="sec">
       <div class="sec-head"><h3>Supply chain scenarios to compare</h3><span class="note">Pick one or more</span></div>
       <div class="scen" id="scenBox"></div>
-      <p class="callout warn" id="whyVerified" hidden><b>Why real (verified) values matter.</b> Without verified data from your supplier, CBAM must use the EU default value: one number per country, based on how aluminium is usually made there, plus a mark up of 10% to 30%. It is the same for every tonne, so buying recycled or low carbon aluminium from that supplier does not lower your CBAM at all. With verified data, each type is charged on its real emissions and recycled metal gets its lower benchmark, so a switch to low emission aluminium really does cut the cost.</p>
+      <p class="callout warn" id="whyVerified" hidden><b>Why real (verified) values matter.</b> Without verified data from your supplier, CBAM must use the EU default value: one number per country, based on how aluminium is usually made there, plus a mark up of 10% to 30%. It is the same for every tonne, so buying recycled or low carbon aluminium from that supplier does not lower your CBAM at all. With verified data, each type is charged on its own real emissions. Note that recycled metal is also measured against a much lower CBAM benchmark, so while free allocation lasts its CBAM saving over primary is small, and in the first years it can even need slightly more certificates per tonne. The saving grows quickly as free allocation ends between 2030 and 2034.</p>
       <div id="blkA" hidden><h3 class="sub">Imported sheet: where it is made</h3><div id="s_originA"></div><p id="originText" class="callout" hidden></p><div id="ukNoteA"></div><div id="defInfoA"></div></div>
-      <div id="blkD" hidden><h3 class="sub" id="blkDh">Imported ingot, EU rolled: where the ingots are made</h3><div id="s_originD"></div><p id="originTextD" class="callout" hidden></p><div id="ukNoteD"></div><div id="defInfoD"></div></div>
+      <div id="blkD" hidden><h3 class="sub" id="blkDh">Only rolling operations in EU: where the ingots are made</h3><div id="s_originD"></div><p id="originTextD" class="callout" hidden></p><div id="ukNoteD"></div><div id="defInfoD"></div></div>
     </div>
   <div class="stepnav"><button class="btn" type="button" data-tostep="1">← Back</button><button class="btn primary lg" type="button" data-tostep="3">Next: emissions and carbon prices →</button></div>
   </section>
@@ -429,14 +433,15 @@ input[type=range]{width:100%;accent-color:var(--accent)}
     <div class="sec">
       <div class="sec-head"><h3>Carbon prices</h3><span class="note">Default: published 2026 price, then the Reuters analyst forecast</span></div>
       <div id="s_price"></div>
+      <p class="callout" id="cpStatus">Checking for the latest published CBAM certificate price…</p>
       <div id="emNote" style="font-size:13.5px;color:var(--muted)"></div>
-      <div class="callout ukn" id="ukPriceNote" hidden><p><b>UK CBAM depends on the price difference.</b> You pay the UK carbon price, reduced for the free allowances UK producers still get, minus the carbon price already paid where the metal was made. If the price already paid is equal or higher, UK CBAM is zero; it is never negative. The same works the other way for UK metal entering the EU.</p><p><b>EU values are used for the UK.</b> The UK has not published its own default values or CBAM rate, so EU default values (with their mark ups) are used for UK imports. EU CBAM benchmarks are not used: the UK instead reduces its price by the share of emissions still covered by free allowances (see Rules and benchmarks).</p><p>To use your own UK prices, type them in the UK row below; empty boxes grow by your expected growth rate.</p></div>
+      <div class="callout ukn" id="ukPriceNote" hidden><p><b>UK prices.</b> UK CBAM, and UK ETS on metal made or rolled in the UK, use the UK carbon price below. Metal made in the EU carries the EU carbon price, which is deducted from UK CBAM. Emissions use EU default values without the EU mark up until the UK publishes its own. UK ETS benchmarks are under Rules and benchmarks.</p><p>To use your own UK prices, type them in the UK row below; empty boxes grow by your expected growth rate.</p></div>
       <div class="tbl-wrap"><table id="t_price"></table></div>
     </div>
 
     <div class="sec">
-      <div class="sec-head"><h3>EU ETS emission factors</h3><span class="note">For metal made inside the EU</span></div>
-            <p class="callout"><b>Enter the emission factor for each type of aluminium at each process step</b> (alumina refining, anode production, smelting, rolling) for metal made <b>inside the EU</b>, in t CO2e per tonne. These give the EU carbon cost built into the price. Enter <b>Scope 1 (direct) emissions only</b>: fuel burned, anodes and PFCs. Electricity (Scope 2) is not counted by the EU ETS or CBAM for aluminium.</p>
+      <div class="sec-head"><h3>Process emission factors</h3><span class="note">For metal made in the EU, and in the UK when it applies</span></div>
+            <p class="callout"><b>Enter the emission factor for each type of aluminium at each process step</b> (alumina refining, anode production, smelting, rolling) for metal made <b>inside the EU</b>, in t CO2e per tonne. These give the EU carbon cost built into the price. They are also used for metal made or rolled in the UK (UK ETS). Enter <b>Scope 1 (direct) emissions only</b>: fuel burned, anodes and PFCs. Electricity (Scope 2) is not counted by the EU ETS or CBAM for aluminium.</p>
       <div class="tbl-wrap"><table id="t_em"></table></div>
       <div class="tbl-wrap"><table id="t_tot"></table></div>
     </div>
@@ -456,8 +461,8 @@ input[type=range]{width:100%;accent-color:var(--accent)}
       <p class="callout"><b>What the mark up means.</b> If your supplier cannot give verified emissions data, you must use the EU's default emission value for that country and product instead. The EU sets these defaults high on purpose, and adds a mark up on top: 10% in 2026, 20% in 2027 and 30% from 2028. It works as a penalty for not having real data, so suppliers with verified data usually cost less in CBAM.</p>
       <p class="chip">Sources: <a class="src" href="https://eur-lex.europa.eu/eli/dir/2003/87/oj" target="_blank" rel="noopener">EU ETS Directive 2003/87/EC, Article 10a(1a)</a> · <a class="src" href="https://eur-lex.europa.eu/eli/reg_impl/2026/1740/oj" target="_blank" rel="noopener">Implementing Regulation (EU) 2025/2621 as corrected by 2026/1740 (default value mark ups)</a> · <a class="src" href="https://eur-lex.europa.eu/eli/dec_impl/2026/1862/oj" target="_blank" rel="noopener">Decision (EU) 2026/1862 (CSCF)</a></p>
       <div id="ukBlock" hidden>
-        <h3 style="margin-top:6px">UK only: free allocation still given to UK producers</h3>
-        <p class="callout warn" style="margin-top:8px">Not final law yet. Default is the illustrative option in the UK government's analytical annex (10 points less each year from 2027). Replace it when HM Treasury publishes the UK CBAM rate for aluminium.</p>
+        <h3 style="margin-top:6px">UK only: share of the UK benchmark still given free</h3>
+        <p class="callout warn" style="margin-top:8px">Not final yet. The UK ETS Authority will phase out free allowances for CBAM sectors over about nine years from 2027; the default takes 10 points off each year from 2027 (UK government analytical annex). It is used for UK ETS on UK plants and for the UK CBAM rate. Replace it when HM Treasury publishes the UK CBAM rate for aluminium.</p>
         <div class="tbl-wrap" style="margin-top:8px"><table id="t_uk"></table></div>
       </div>
 </div>
@@ -470,6 +475,10 @@ input[type=range]{width:100%;accent-color:var(--accent)}
       <p class="callout">Alumina refining and rolling have no product benchmark of their own. Instead, the EU gives free allowances for the heat they use: <b>31.2 allowances for every terajoule (TJ) of heat</b>. Enter how much heat each process uses to make one tonne of aluminium; the tool multiplies it by the heat benchmark to get the free allowances per tonne. For example, 0.0212 TJ × 31.2 = 0.66 allowances per tonne for alumina refining.</p>
       <div id="s_benchEts"></div>
       <div class="flow" id="flowCards"></div>
+</div>
+        <div class="sec" id="ukBenchSec" hidden><div class="sec-head"><h3>UK ETS benchmarks</h3><span class="note">Only for aluminium smelted or rolled in the UK</span></div>
+      <p class="callout">The UK ETS gives free allowances the same way as the EU ETS: a product benchmark for smelting and anodes, and the heat benchmark for rolling. Emissions above the free allowances are paid at the UK carbon price. For 2026 and 2027 the UK keeps its current values (the EU's 2021 to 2025 values); from 2028 it plans to use the updated EU values. Free allowances for aluminium are phased out from 2027 (see the UK free allocation table above). The emission factors are the same process values you entered for EU plants; change them if your UK plant differs.</p>
+      <div class="tbl-wrap"><table class="btab" id="t_ukB"></table></div>
 </div>
         <div class="sec"><div class="sec-head"><h3>CBAM benchmarks</h3><span class="note">For imported ingot and sheet</span></div>
       
@@ -501,8 +510,9 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 </div>
 <div id="viewResults" hidden style="display:flex;flex-direction:column;gap:20px">
   <header class="phead">
-    <h1 id="rsTitle">Your total carbon cost for aluminium over 10 years</h1>
-    <p class="lede" id="rsMix"></p>
+    <h1 id="rsTitle">Supply chain comparison: your total carbon cost over 10 years</h1>
+    <p class="lede" id="rsMix" hidden></p>
+    <p class="callout" id="rsHow"></p>
   </header>
   <div class="bar">
     <button class="btn" id="backBtn" type="button">← Edit inputs</button>
@@ -573,9 +583,9 @@ input[type=range]{width:100%;accent-color:var(--accent)}
   <header class="phead">
     <h1>What does switching to low emission aluminium save?</h1>
     <p class="lede">Recycled and low carbon aluminium carry fewer embedded emissions, so less carbon cost. Set how much of each you plan to buy and compare the cost with business as usual. Your results update as you type.</p>
-    <div class="callout red">
-      <p><b>You only see a CBAM saving with real supplier data.</b> If your supplier has no verified emissions data, CBAM uses the EU default value for the country. That value is the same whatever you buy, so recycled and low carbon aluminium show no CBAM saving on imported metal, even though they really are cleaner. Ask your supplier for verified emissions data and enter it in the CBAM emission factors table to see the saving.</p>
-      <p><b>Low carbon aluminium saves less than you might expect.</b> CBAM and the EU ETS only count direct emissions (Scope 1). Low carbon aluminium is cleaner mainly because it uses renewable electricity, which is not counted. So even with real data, most of its benefit does not show up as a lower carbon cost. Recycled aluminium gives the biggest saving.</p>
+    <div class="callout tip">
+      <p><b>Make your switch count: pair it with verified supplier data.</b> Recycled and low carbon aluminium really are cleaner. To turn that into a lower CBAM bill on imported metal, your supplier needs to give you verified emissions data. Without it, CBAM falls back on the EU default value for the country, which is the same for every type of aluminium, so the saving stays hidden. Ask suppliers for verified data and enter it in the CBAM emission factors table.</p>
+      <p><b>Where each type saves most.</b> Recycled aluminium gives the biggest carbon cost saving over time, because its direct emissions are far lower. On imported metal the CBAM saving is small at first, because recycled metal is measured against a much lower benchmark, and it grows as free allocation ends between 2030 and 2034. Low carbon aluminium's main advantage is clean electricity, which CBAM and the EU ETS do not count today, so most of its benefit shows up in your Scope 3 footprint and in customer requirements rather than in CBAM.</p>
     </div>
   </header>
   <div class="bar">
@@ -665,7 +675,7 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 <div id="viewSupply" hidden style="display:flex;flex-direction:column;gap:20px">
   <header class="phead">
     <h1>Supply mix</h1>
-    <p class="lede">Most companies buy from several supply chains and countries at once. Split your aluminium across them to see your blended carbon cost, which suppliers drive it, and how to bring it down. It uses the inputs you already gave; nothing new to fill in except the shares.</p>
+    <p class="lede">Your total across all your supply chains. The Results page compares each route as if all your aluminium came through it; most companies buy through several at once. Split your purchases the way you really buy to see your combined carbon cost, which supplier drives it, and how to bring it down. It uses the inputs you already gave; nothing new to fill in except the shares.</p>
   </header>
   <div class="bar">
     <button class="btn" type="button" data-nav="2">← Results</button>
@@ -693,7 +703,7 @@ input[type=range]{width:100%;accent-color:var(--accent)}
     <div class="sec-head"><h3>4. Compare countries</h3><span class="note" id="cmpNote"></span></div>
     <p class="chip">Carbon cost per tonne of sheet in each country when the supplier has no verified data, so the EU default value applies. Your countries are highlighted.</p>
     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-      <div class="seg2" role="group" aria-label="Product"><button class="btn" data-cmpp="A" aria-pressed="true">Imported sheet</button><button class="btn" data-cmpp="D" aria-pressed="false">Imported ingot, EU rolled</button></div>
+      <div class="seg2" role="group" aria-label="Product"><button class="btn" data-cmpp="A" aria-pressed="true">Imported sheet</button><button class="btn" data-cmpp="D" aria-pressed="false">Only rolling operations in EU</button></div>
       <div class="seg2" role="group" aria-label="Year" id="cmpYears"></div>
       <div class="seg2" role="group" aria-label="Countries shown"><button class="btn" data-cmpa="0" aria-pressed="true">Yours, cheapest and dearest</button><button class="btn" data-cmpa="1" aria-pressed="false">All countries</button></div>
     </div>
@@ -715,12 +725,14 @@ input[type=range]{width:100%;accent-color:var(--accent)}
       <li><b>EU ETS cost built into the price</b> (EU made metal), for each process step: emissions charged = MAX(0, emissions minus benchmark × free allocation share). Smelting uses the aluminium product benchmark and anode production the prebake anode benchmark × anodes used, both on the primary and low carbon share; alumina refining and rolling use heat used × heat benchmark. Alumina refining keeps its full free allocation (free allocation share = 100%), because alumina is not a CBAM good and the phase out only applies to CBAM goods. Cost = emissions charged × EU carbon price.</li>
       <li><b>EU CBAM on imported sheet or ingots, verified data</b>: certificates = sum over types of share × MAX(0, embedded emissions minus CBAM benchmark × free allocation share). Primary and low carbon use the primary route benchmark; recycled uses the secondary route benchmark.</li>
       <li><b>EU CBAM with EU default values</b>: certificates = MAX(0, default × (1 + mark up) minus the benchmark of the route given for that country in the default values file × free allocation share). Example: China sheet is primary route (1.485), Serbia sheet is secondary route (0.148). Mark up 10% (2026), 20% (2027), 30% from 2028. The mix does not change this.</li>
-      <li><b>EU carbon price</b>: 2026 uses the published CBAM certificate price; 2027 to 2030 use the Reuters analyst survey of July 2026 unless you type your own; later years continue the analysts' trend of about 8% a year rate. The carbon price check slider scales the whole path.</li>
-      <li><b>CBAM cost</b> = certificates × EU certificate price. The phase in is applied once, through the benchmark. Carbon price already paid in the country of origin (for example the UK) is deducted. Importers bringing in less than 50 tonnes a year are exempt.</li>
-      <li><b>UK CBAM</b> (importing into the UK, from 1 January 2027, only if your CBAM imports are worth £50,000 or more over 12 months) = direct embedded emissions × UK price (entered in GBP) × (1 minus UK free allowance share), minus the carbon price already paid in the country of origin after free allowances, never below zero. EU default values are used until the UK publishes its own, and the UK free allowance path is an assumption until HM Treasury publishes the rate.</li>
-      <li><b>From the UK into the EU</b>: EU CBAM as normal, minus the UK carbon price already paid after UK free allowances, never below zero.</li>
+      <li><b>EU carbon price</b>: 2026 uses the published CBAM certificate price; 2027 to 2030 use the Reuters analyst survey of July 2026 unless you type your own; later years continue the analysts' trend of about 8% a year. If your base year is after 2026, its price is the base year price you enter (default: the forecast for that year). The carbon price check slider scales the whole path.</li>
+      <li><b>CBAM cost</b> = certificates × EU certificate price. The phase in is applied once, through the benchmark. Carbon price already paid in the country of origin (for example the UK) is deducted. Importers bringing in less than 50 tonnes a year of all CBAM goods are exempt. On the Supply mix page, the 50 tonne and £50,000 tests use only the tonnes your company imports itself.</li>
+      <li><b>Metal made in the EU, Norway, Iceland, Liechtenstein or Switzerland</b>: no CBAM. Its makers pay the EU carbon price (EU ETS), calculated as for EU made metal (anodes, smelting and rolling) and built into the price.</li>
+      <li><b>UK CBAM</b> (importing into the UK, from 1 January 2027, only if your CBAM imports are worth £50,000 or more over 12 months) = direct embedded emissions × UK price (entered in GBP) × (1 minus UK free allowance share), minus the carbon price already paid in the country of origin, never below zero. EU default values without the EU mark up are used until the UK publishes its own, and the UK free allowance path is an assumption until HM Treasury publishes the rate.</li>
+      <li><b>From the UK into the EU</b>: EU CBAM as normal, minus the UK ETS cost already paid by the UK maker, never below zero. That UK ETS cost is also built into the price.</li>
+      <li><b>UK ETS</b> (metal smelted or rolled in the UK), for each process step: emissions charged = MAX(0, emissions minus UK benchmark × share still free). Cost = emissions charged × UK carbon price.</li>
       <li><b>Importing into a country with no CBAM</b> (for example the US or India): no CBAM on the sheet itself. Metal made or rolled in Europe still carries the EU ETS cost in its price, and ingots rolled in the EU still carry the EU CBAM the roller pays.</li>
-      <li><b>Imported ingot, UK rolled</b> (UK buyers only) = UK CBAM on the ingots from 2027 (paid by the UK roller) + UK ETS cost of rolling, both built into the price.</li>
+      <li><b>Only rolling operations in UK</b> (UK buyers only) = UK CBAM on the ingots from 2027 (paid by the UK roller, so your own £50,000 threshold does not apply to it) + UK ETS cost of rolling (UK benchmarks, see UK ETS), both built into the price.</li>
       <li><b>Total cost per tonne</b> = direct CBAM + indirect cost built into the price. Total per year = cost per tonne × tonnes bought.</li>
       <li><b>Totals</b> = each year's cost added up, not discounted.</li>
       <li><b>Blended supply</b> = sum of each scenario's cost per tonne × its share of your purchases.</li>
@@ -757,15 +769,22 @@ input[type=range]{width:100%;accent-color:var(--accent)}
       <li>EU made emission factors are midpoints of EU plant data from the EU benchmark study (2009), the most recent official split by process step. Plants have likely improved since, so they are on the cautious side.</li>
       <li>Recycled metal remelted in the EU gets no free allocation in this tool (its fuel benchmark is left out), so its EU ETS cost is slightly overstated.</li>
       <li>Verified sheet imports use the full chain sheet benchmark (1.485 primary, 0.148 secondary). The official calculation for actual emissions adds the rolling step benchmark to the benchmark of the ingots used, which comes out within about 0.01 t of these values.</li>
-      <li>Results are estimates, not legal or customs advice. Rules and prices last checked 6 October 2026.</li>
+      <li>UK ETS uses UK benchmarks (the EU's 2021 to 2025 values for 2026 and 2027, then the updated EU values the UK plans to adopt) and an assumed UK phase out of free allowances (10 points a year from 2027). The UK has not published its final phase out for aluminium.</li>
+      <li>EU rolling is charged against the heat benchmark × the heat used per tonne. A mill that falls under the fuel benchmark instead gets slightly different free allocation.</li>
+      <li>Ingots made in the UK, rolled in the EU and sent back to the UK are treated like any other EU rolled sheet (EU CBAM on the ingots, then UK CBAM on the sheet minus the EU price paid). Real rules for returned goods may differ.</li>
+      <li>Metal from Norway, Iceland, Liechtenstein and Switzerland is costed with the EU carbon price and EU emission factors. Switzerland has its own linked carbon market, whose price can differ.</li>
+      <li>Results are estimates, not legal or customs advice. Rules and prices last checked 14 October 2026.</li>
     </ul>
   </div>
 </div>
-  <p class="chip">Last checked 6 October 2026. This tool gives estimates, not legal or customs advice. <button class="btn" type="button" data-go="4" style="padding:2px 10px;font-size:12.5px">Method and sources</button></p>
+  <p class="chip">Last checked 14 October 2026. This tool gives estimates, not legal or customs advice. <button class="btn" type="button" data-go="4" style="padding:2px 10px;font-size:12.5px">Method and sources</button></p>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <datalist id="countryList"></datalist><datalist id="originList"></datalist>
+<script>
+window.addEventListener("error",e=>{ try{ let d=document.getElementById("jsErr"); if(!d){ d=document.createElement("div"); d.id="jsErr"; d.style.cssText="position:fixed;bottom:12px;left:12px;right:12px;z-index:99;background:#fbe7e5;color:#b3261e;border:1px solid #b3261e;border-radius:8px;padding:10px 14px;font:13px sans-serif"; document.body.appendChild(d); } d.textContent="Something went wrong: "+(e.message||"error")+" (line "+(e.lineno||"?")+"). Please send this message to the tool's author."; }catch(x){} });
+</script>
 <script>
 const YEARS_FROM = 2026, NY = 9; // 10 years: base year plus 9
 const SRC = {
@@ -822,9 +841,9 @@ def("pPrim",{label:"Aluminium price",hint:"Used only to check the £50,000 UK CB
 def("pRec",{label:"Recycled aluminium price",unit:"USD per t",dflt:null,min:0});
 def("pLow",{label:"Low carbon aluminium price",unit:"USD per t",dflt:null,min:0});
 // Part 2
-def("euPrice",{label:"EU CBAM certificate price, base year",hint:"Average of the quarterly prices published so far",unit:"EUR per t CO2e",dflt:77.65,src:SRC.ec,min:0,prefill:true});
+def("euPrice",{label:"EU CBAM certificate price, base year",hint:"For 2026, the average of the quarterly prices published so far. For a later base year, the default is the analysts' forecast for that year",unit:"EUR per t CO2e",dflt:77.65,src:SRC.ec,min:0,prefill:true});
 const EPF={2027:89.13,2028:95.37,2029:100.43,2030:109.11};
-def("ownPrice",{label:"UK carbon price (UK ETS), base year",hint:"Price of one UK allowance. Check it is current before relying on the result",unit:"GBP per t CO2e",dflt:55,src:SRC.uka,min:0,req:false,cond:"own"});
+def("ownPrice",{label:"UK carbon price (UK ETS), base year",hint:"Price of one UK allowance in the base year. For a later base year, the default grows from today's price at the rate below",unit:"GBP per t CO2e",dflt:55,src:SRC.uka,min:0,req:false,cond:"own"});
 def("fxGbp",{label:"Exchange rate, pounds",hint:"Pounds per 1 US dollar, used to convert the UK price and the £50,000 threshold",unit:"GBP per USD",dflt:0.7555,src:["Saved rate: 1 GBP = 1.3237 USD (July 2026)","https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"],min:0.1,max:5,step:"0.0001",req:false,cond:"own"});
 def("ownGrowth",{label:"Expected growth in the UK price",unit:"% per year",dflt:5,src:["Assumption from the original model",""],min:-50,max:100,req:false,cond:"own"});
 def("origin",{label:"Where is the sheet imported from?",hint:"The country where the sheet is made",type:"text",dflt:null,cond:"A",list:"originList"});
@@ -849,15 +868,23 @@ const BENCH = [
  ["bShS","CBAM benchmark, sheet CN 7606, secondary route",0.148,"t CO2e per t",SRC.smm]
 ];
 BENCH.forEach(([id,label,d,unit,src])=>def(id,{label,unit,dflt:d,src,prefill:true,step:"0.001",min:0}));
+// UK ETS benchmarks: same method as the EU ETS. 2026 and 2027 keep the 2021 to 2025 values; from 2028 the UK plans to use the updated EU values.
+const UKB=[["bUkAl27","UK ETS product benchmark, primary aluminium, 2026 and 2027",1.464,"allowances per t",["Commission Delegated Regulation (EU) 2021/447 (2021 to 2025 values, kept by the UK ETS)","https://eur-lex.europa.eu/eli/reg_impl/2021/447/oj"]],
+ ["bUkAl28","UK ETS product benchmark, primary aluminium, from 2028",1.423,"allowances per t",["UK ETS Authority, Free Allocation Review response (2025): current benchmarks kept for 2027, updated EU values from 2028","https://assets.publishing.service.gov.uk/media/69272f7d9c1eda2cdf034130/uk-ets-free-allocation-review-authority-response.pdf"]],
+ ["bUkAno27","UK ETS product benchmark, prebake anode, 2026 and 2027",0.312,"allowances per t of anode",["Commission Delegated Regulation (EU) 2021/447 (2021 to 2025 values, kept by the UK ETS)","https://eur-lex.europa.eu/eli/reg_impl/2021/447/oj"]],
+ ["bUkAno28","UK ETS product benchmark, prebake anode, from 2028",0.290,"allowances per t of anode",["UK ETS Authority, Free Allocation Review response (2025): current benchmarks kept for 2027, updated EU values from 2028","https://assets.publishing.service.gov.uk/media/69272f7d9c1eda2cdf034130/uk-ets-free-allocation-review-authority-response.pdf"]],
+ ["bUkHeat27","UK ETS heat benchmark, 2026 and 2027",47.3,"allowances per TJ of heat",["Commission Delegated Regulation (EU) 2021/447 (2021 to 2025 values, kept by the UK ETS)","https://eur-lex.europa.eu/eli/reg_impl/2021/447/oj"]],
+ ["bUkHeat28","UK ETS heat benchmark, from 2028",31.2,"allowances per TJ of heat",["UK ETS Authority, Free Allocation Review response (2025): current benchmarks kept for 2027, updated EU values from 2028","https://assets.publishing.service.gov.uk/media/69272f7d9c1eda2cdf034130/uk-ets-free-allocation-review-authority-response.pdf"]]];
+UKB.forEach(([id,label,d,unit,src])=>def(id,{label,unit,dflt:d,src,prefill:true,step:"0.001",min:0}));
 
 // CBAM embedded emission factors (imports)
 const CB=[["Ing","Ingot, CN 7601 (imported ingot)",{P:[1.8,SRC.platts],L:[1.8,["Same direct smelting emissions as primary unless the supplier verifies lower",""]],R:[0.53,SRC.model]}],
-          ["Sh","Sheet, CN 7606 (imported sheet)",{P:[2.3,["Smelting 1.8 (S&P Global Platts industry average) + rolling 0.5 (original model)",""]],L:[2.3,["Smelting 1.8 + rolling 0.5, as primary",""]],R:[1.03,["Remelting 0.53 + rolling 0.5 (original model)",""]]}]];
+          ["Sh","Sheet, CN 7606 (imported sheet)",{P:[1.93,["Smelting 1.8 (S&P Global Platts industry average) + rolling 0.13 (midpoint of EU rolling mills, EU benchmark study)",""]],L:[1.93,["Smelting 1.8 + rolling 0.13, as primary",""]],R:[0.66,["Remelting 0.53 + rolling 0.13",""]]}]];
 CB.forEach(([k,lab,d])=>[["P","Primary"],["L","Low carbon"],["R","Recycled"]].forEach(([t,tl])=>def(`cb_${k}${t}`,{label:`${lab}, ${tl}`,unit:"t CO2e per t",dflt:d[t][0],src:d[t][1],min:0,step:"0.001",inTable:true})));
 // emissions table cells
 const BMS="https://climate.ec.europa.eu/system/files/2016-11/bm_study-aluminium_en.pdf";
 const EM = [
- ["ref","Alumina refining",{P:[1.16,["Midpoint of EU refineries, 0.40 to 0.83 t CO2 per t alumina (EU benchmark study, Table 7), × 1.93 t alumina per t aluminium. Scope 1 only",BMS]],L:[1.16,["Same as primary: midpoint of the EU range",BMS]],R:[0,["Recycled aluminium needs no alumina",""]]}],
+ ["ref","Alumina refining",{P:[1.19,["Midpoint of EU refineries, 0.40 to 0.83 t CO2 per t alumina (EU benchmark study, Table 7), × 1.93 t alumina per t aluminium. Scope 1 only",BMS]],L:[1.19,["Same as primary: midpoint of the EU range",BMS]],R:[0,["Recycled aluminium needs no alumina",""]]}],
  ["ano","Anode production",{P:[0.15,["Midpoint of 0.12 (EU ETS prebake anode benchmark 0.290 t CO2 per t anode × 0.413 t anode per t aluminium) and 0.18 (IAI world average 2024). Scope 1 only","https://eur-lex.europa.eu/eli/reg_impl/2026/1412/oj"]],L:[0.15,["Same as primary: same carbon anodes",""]],R:[0,["Recycled aluminium needs no anodes",""]]}],
  ["sme","Smelting or remelting",{P:[1.60,["EU smelters 1.50 to 2.55 t CO2e per t, typical level about 1.57 to 1.60 (EU benchmark study, Table 7 and Figure 5). The midpoint is not used: a few old Söderberg plants pull it up. Scope 1 only",BMS]],L:[1.423,["Slightly lower than primary: best 10% of EU smelters (EU ETS benchmark 2026 to 2030)","https://eur-lex.europa.eu/eli/reg_impl/2026/1412/oj"]],R:[0.22,["Remelting scrap, benchmark level for secondary aluminium (EU benchmark study, Table 8). Scope 1 only",BMS]]}],
  ["rol","Rolling",{P:[0.13,["Midpoint of EU rolling mills, 0.02 to 0.235 t CO2 per t (EU benchmark study, Table 7). Scope 1 only",BMS]],L:[0.13,["Same for every type: depends on the mill, not the metal",""]],R:[0.13,["Same for every type",""]]}]
@@ -885,10 +912,11 @@ function eOn(){ return !!scen.E&&typeof isUK==="function"&&isUK(S.country); }
 function ingOn(){ return !!scen.D||eOn(); }
 try{ const s=JSON.parse(localStorage.getItem("cbamInputsV1")||"null"); if(s){S=s.S||{};scen=s.scen||scen; if(+S.ownPrice===72.8) S.ownPrice=55; if(+S.euPrice===75.32) S.euPrice=77.65;} }catch(e){}
 function save(){ try{localStorage.setItem("cbamInputsV1",JSON.stringify({S,scen}));}catch(e){} }
-BENCH.forEach(b=>{ if(S[b[0]]==null||S[b[0]]===""||/^b(Ing|Sh)/.test(b[0])) S[b[0]]=b[2]; }); // CBAM benchmarks are fixed by law
+BENCH.forEach(b=>{ if(S[b[0]]==null||S[b[0]]===""||/^b(Ing|Sh)/.test(b[0])) S[b[0]]=b[2]; }); UKB.forEach(b=>{ if(S[b[0]]==null||S[b[0]]==="") S[b[0]]=b[2]; }); // CBAM benchmarks are fixed by law
 if(S.euPrice==null||S.euPrice==="") S.euPrice=F.euPrice.dflt;
 if(+S.pPrim===3225) S.pPrim=3125.45;
 S.euMode="forecast";
+{ const OLD2={em_refP:1.16,em_refL:1.16,cb_ShP:2.3,cb_ShL:2.3,cb_ShR:1.03}; Object.entries(OLD2).forEach(([id,v])=>{ if(S[id]!==""&&S[id]!=null&&+S[id]===v) S[id]=F[id].dflt; }); }
 { const OLD={em_refP:2.3,em_refL:0.962,em_smeP:1.8,em_smeL:1.8,em_smeR:0.53,em_rolP:0.5,em_rolL:0.5,em_rolR:0.5}; Object.entries(OLD).forEach(([id,v])=>{ if(+S[id]===v&&S[id]!=="") S[id]=F[id].dflt; }); if(S.em_refP!=null&&S.em_refP!==""&&(S.em_anoP==null||S.em_anoP==="")) ["P","L","R"].forEach(t=>S["em_ano"+t]=F["em_ano"+t].dflt); }
 if(+S.anodeUse===0.43) S.anodeUse=0.413;
 if(+S.heatRef===0.015044) S.heatRef=0.0212; if(+S.heatRoll===0.000324) S.heatRoll=0.0023;
@@ -976,6 +1004,9 @@ const CBAMBM_SRC=["Implementing Regulation (EU) 2025/2620, Annex, point 5.3 (Col
 document.getElementById("t_cbamB").innerHTML=`<thead><tr><th>Imported product</th><th>Primary route (K)<br>t CO2e per t</th><th>Secondary route (L)<br>t CO2e per t</th></tr></thead><tbody>
  <tr><td>Ingot, CN 7601</td><td class="calc"><b>${fmt(F.bIngP.dflt,3)}</b></td><td class="calc"><b>${fmt(F.bIngS.dflt,3)}</b></td></tr>
  <tr><td>Sheet, CN 7606</td><td class="calc"><b>${fmt(F.bShP.dflt,3)}</b></td><td class="calc"><b>${fmt(F.bShS.dflt,3)}</b></td></tr></tbody>`;
+document.getElementById("t_ukB").innerHTML=`<thead><tr><th>Benchmark</th><th>2026 and 2027</th><th>From 2028</th><th>Unit</th></tr></thead><tbody>`+
+ [["Primary aluminium (smelting)","bUkAl"],["Prebake anode","bUkAno"],["Heat (rolling)","bUkHeat"]].map(([l,k])=>`<tr><td>${l}</td><td>${inp(k+"27",90)}<div class="chip">Default <b>${F[k+"27"].dflt}</b></div></td><td>${inp(k+"28",90)}<div class="chip">Default <b>${F[k+"28"].dflt}</b></div></td><td style="text-align:left">${F[k+"27"].unit}</td></tr>`).join("")+
+ `</tbody>`+`<caption style="caption-side:bottom;text-align:left" class="chip">Sources: ${srcHtml(F.bUkAl27.src)} · ${srcHtml(F.bUkAl28.src)}</caption>`;
 document.getElementById("cbamBMsrc").innerHTML=`Source: ${srcHtml(CBAMBM_SRC)}. Fixed by EU law, so they cannot be changed here.`;
 
 const SERIES = {A:["#6a3bbf","#6a3bbf"],B:["#d05f00","#d05f00"],C:["#c2187a","#c2187a"],D:["#d2a800","#d2a800"],E:["#0b7f86","#0b7f86"]};
@@ -984,8 +1015,8 @@ const SCEN = [
  ["A","Imported sheet","All operations outside the EU","You import finished sheet and pay CBAM on it"],
  ["B","EU made","All operations in the EU","No CBAM; the EU carbon cost is in the price"],
  ["C","EU smelted and rolled","Alumina imported","Alumina is not a CBAM good, so no CBAM on it"],
- ["D","Imported ingot, EU rolled","Only rolling in the EU","The EU roller pays CBAM on the ingots"],
- ["E","Imported ingot, UK rolled","Ingots imported into the UK and rolled there","Only for UK buyers. The UK roller pays UK CBAM on the ingots from 2027"]
+ ["D","Only rolling operations in EU","Only rolling in the EU","The EU roller pays CBAM on the ingots"],
+ ["E","Only rolling operations in UK","Ingots imported into the UK and rolled there","Only for UK buyers. The UK roller pays UK CBAM on the ingots from 2027"]
 ];
 document.getElementById("scenBox").innerHTML = SCEN.map(([k,t,a,b])=>`<label for="sc_${k}" id="lab_${k}" ${k==="E"?"hidden":""}><input type="checkbox" id="sc_${k}" data-scen="${k}" ${scen[k]?"checked":""}><span class="sw" style="background:${SERIES[k][0]};margin-top:5px"></span><span><b>${t}</b><small id="scd_${k}">${a}. ${b}</small></span></label>`).join("");
 
@@ -1008,7 +1039,7 @@ function cbState(){
       else if(el.readOnly){ el.readOnly=false; el.value=S[`cb_${k}${t}`]??""; el.title=""; } });
     const src=document.getElementById("cbsrc_"+k); if(!src) return;
     const key=useDef?`def|${o.n}|${v}`:"own"; if(src.dataset.key===key) return; src.dataset.key=key;
-    src.innerHTML=useDef?`<div style="font-size:12.5px"><b>Using the EU default value for ${pw} from ${o.n}${d.other?" (other countries and territories)":""}: ${fmt(v,3)}</b>, because your supplier has no verified data.</div><div style="font-size:12.5px;color:var(--muted)">The same value applies to primary, low carbon and recycled: the EU treats all ${pw} from ${d.other?"these countries":o.n} as ${r==="L"?"secondary (recycled), route L":"primary, route K"}. The mark up is added in the results.</div>`:cbSrcHtml(k);
+    src.innerHTML=useDef?`<div style="font-size:12.5px"><b>Using the EU default value for ${pw} from ${o.n}${d.other?" (other countries and territories)":""}: ${fmt(v,3)}</b>, because your supplier has no verified data.</div><div style="font-size:12.5px;color:var(--muted)">The same value applies to primary, low carbon and recycled: the EU treats all ${pw} from ${d.other?"these countries":o.n} as ${r==="L"?"secondary (recycled), route L":"primary, route K"}. The EU mark up is added for EU CBAM only; UK CBAM uses the value as it is.</div>`:cbSrcHtml(k);
   });
 }
 function emTable(){
@@ -1051,7 +1082,7 @@ function recalc(){
   document.getElementById("t_tot").innerHTML=`<thead><tr><th>Made inside the EU</th>${TYPES.map(t=>`<th>${t[1]}</th>`).join("")}<th>Used in</th></tr></thead><tbody>
    <tr><td>Refining + anodes + smelting + rolling</td>${tot(["ref","ano","sme","rol"]).map(v=>`<td class="calc">${v}</td>`).join("")}<td style="text-align:left">EU made</td></tr>
    <tr><td>Anodes + smelting + rolling</td>${tot(["ano","sme","rol"]).map(v=>`<td class="calc">${v}</td>`).join("")}<td style="text-align:left">EU smelted and rolled</td></tr>
-   <tr><td>Rolling only</td>${tot(["rol"]).map(v=>`<td class="calc">${v}</td>`).join("")}<td style="text-align:left">Imported ingot, EU rolled</td></tr></tbody>`;
+   <tr><td>Rolling only</td>${tot(["rol"]).map(v=>`<td class="calc">${v}</td>`).join("")}<td style="text-align:left">Only rolling operations in EU</td></tr></tbody>`;
 }
 const PT=[["pPrim","Primary"],["pRec","Recycled"],["pLow","Low carbon"]];
 function priceSeries(id){ const ys=years(), inf=num("inflation")??2, yearly=(S.priceMode==="yearly"); let prev=num(id); const out=[prev];
@@ -1083,15 +1114,22 @@ function costTable(){
 }
 
 const EP_TREND=0.08; // after 2030: the analysts' average yearly rise 2026 to 2030 (79.97 to 109.11)
+function euBaseDflt(y){ if(y==null||y<=2026) return F.euPrice.dflt; if(EPF[y]!=null) return EPF[y]; return +(EPF[2030]*Math.pow(1+EP_TREND,y-2030)).toFixed(2); }
+function ukBaseDflt(y){ const g=(num("ownGrowth")??F.ownGrowth.dflt)/100; return +(F.ownPrice.dflt*Math.pow(1+g,Math.max(0,(y??2026)-2026))).toFixed(2); }
+function syncBasePrices(){ const by=num("baseYear"); if(by==null||by<2026||by>2035||!Number.isInteger(by)) return; const old=S._by??2026; if(old===by) return;
+  const same=(id,v)=>S[id]==null||S[id]===""||Math.abs(+S[id]-v)<0.006;
+  if(same("euPrice",euBaseDflt(old))) setVal("euPrice",euBaseDflt(by));
+  if(same("ownPrice",ukBaseDflt(old))) setVal("ownPrice",ukBaseDflt(by));
+  S._by=by; }
 function euDefault(y,i,prev){ const base=num("euPrice"), g=EP_TREND;
-  if(i===0) return y<=2026?base:(EPF[y]??base);
+  if(i===0) return base;
   if(EPF[y]!=null) return EPF[y];
   return prev==null?null:prev*(1+g); }
 function euPath(){ const ys=years(); let prev=null; return ys.map((y,i)=>{ const own=i===0?null:num(`ep_${y}`); const v=own!=null?own:euDefault(y,i,prev); prev=v; return v; }); }
 function ukPath(){ const ys=years(), g=(num("ownGrowth")??0)/100; let prev=null; return ys.map((y,i)=>{ const own=i===0?num("ownPrice"):num(`up_${y}`); const v=own!=null?own:prev==null?null:prev*(1+g); prev=v; return v; }); }
 function euTable(){
   const ys=years(), mode=S.euMode==="growth"?"growth":"forecast", el=document.getElementById("t_price"), key=mode+ys[0]+(ownNeeded()?"u":""), fx=num("fx");
-  document.getElementById("emNote").innerHTML = `<p><b>Default prices:</b> ${ys[0]<=2026?"2026 is the published CBAM price above. ":""}2027 to 2030 come from a <a class="src" href="${SRC.reuters[1]}" target="_blank" rel="noopener">Reuters survey of nine analysts (31 July 2026)</a>: €89.13, €95.37, €100.43 and €109.11.</p><p style="margin-top:6px"><b style="color:var(--ink)">To use your own prices, type them in the boxes below; empty boxes keep the default (shown in grey).</b></p>`;
+  document.getElementById("emNote").innerHTML = `<p><b>Default prices:</b> ${ys[0]<=2026?"2026 is the published CBAM price above. ":`${ys[0]} is the base year price above. `}2027 to 2030 come from a <a class="src" href="${SRC.reuters[1]}" target="_blank" rel="noopener">Reuters survey of nine analysts (31 July 2026)</a>: €89.13, €95.37, €100.43 and €109.11.</p><p style="margin-top:6px"><b style="color:var(--ink)">To use your own prices, type them in the boxes below; empty boxes keep the default (shown in grey).</b></p>`;
   const path=euPath();
   if(el.dataset.key!==key){
     el.innerHTML=`<thead><tr><th>Carbon price</th>${ys.map(y=>`<th>${y}</th>`).join("")}</tr></thead><tbody>`+
@@ -1108,7 +1146,7 @@ function euTable(){
     if(ownNeeded()){ const up=ukPath(), g=num("fxGbp")??F.fxGbp.dflt, k=el.querySelector(`[data-uk="${i}"]`), ku=el.querySelector(`[data-uku="${i}"]`), ui=document.getElementById("up_"+y);
       if(k) k.textContent=up[i]==null?"":fmt(up[i],2); if(ku) ku.textContent=up[i]==null||!g?"":fmt(up[i]/g,2);
       if(ui){ const pv=i>0?up[i-1]:null; ui.placeholder=pv==null?"":fmt(pv*(1+(num("ownGrowth")??0)/100),2); } } });
-  const un=document.getElementById("ukPriceNote"); if(un){ un.hidden=!ownNeeded(); }
+  const un=document.getElementById("ukPriceNote"); if(un){ un.hidden=!ownNeeded(); } const ub=document.getElementById("ukBenchSec"); if(ub) ub.hidden=!ownNeeded();
 }
 const isUK=n=>{ const c=cinfo(n); return !!c&&c.cat==="UK"; };
 function ownNeeded(){ return isUK(S.country)||(scen.A&&isUK(S.origin))||(ingOn()&&isUK(S.originD)); }
@@ -1119,14 +1157,13 @@ function ukNoteHtml(where){ const v=ukValue(), y0=+(S.baseYear||2026), lines=[];
       :v>=50000?`<b>Yes, UK CBAM applies:</b> you buy about ${fmt(num("tonnes"),0)} t a year, worth about £${v>=1e6?fmt(v/1e6,1)+" million":fmt(v,0)}, above the £50,000 threshold.`
       :`<b>No, UK CBAM does not apply:</b> your imports are worth about £${fmt(v,0)} a year, below the £50,000 threshold. The UK CBAM cost is set to zero.`);
     lines.push(y0<=2026?`<b>Year:</b> UK CBAM does not apply yet. It starts on 1 January 2027, so your 2026 cost is zero and it is calculated from 2027.`:`<b>Year:</b> UK CBAM is in force from 1 January 2027, so it is calculated for every year from ${y0}.`);
-    lines.push(`<b>How it is paid:</b> you pay the UK CBAM rate minus the carbon price already paid where the metal was made, after free allowances. If the price already paid is equal or higher, you pay nothing.`);
   } else {
     lines.push(`<b>From the UK into the EU:</b> EU CBAM applies from 2026. You pay the EU price minus the UK carbon price already paid, after UK free allowances. If the UK price is equal or higher, you pay nothing.`);
   }
-  if(where==="into") lines.push(`<b>EU values are used for the UK:</b> the UK has not published its own default values yet, so EU default values are used.`);
+  lines.push(`<b>Prices used:</b> the UK carbon price (UK ETS) for UK CBAM and for metal made or rolled in the UK; the EU carbon price (EU ETS) for metal made in the EU, which is deducted from UK CBAM. <b>Emissions:</b> EU default values without the EU mark up, until the UK publishes its own.`);
   lines.push(`<b>Enter the UK carbon price</b> in step 3, Carbon prices.`);
   const cav=[ "UK CBAM starts on 1 January 2027 and applies only to importers with £50,000 or more of CBAM goods over 12 months (or expected within 30 days).",
-    "The UK has not published its default values or CBAM rate yet. EU default values and an assumed UK free allowance path are used, so results are indicative.",
+    "The UK has not published its default values or CBAM rate yet. EU default values (without the EU mark up) and an assumed UK phase out of free allowances are used, so results are indicative.",
     "You pay only the difference between the importing country's carbon price and the price already paid in the country of origin, after free allowances. It is never below zero.",
     "UK CBAM covers direct emissions only until at least 2029. Aluminium is in scope.",
     "The EU and UK are negotiating to link their carbon markets, which could exempt trade between them from both CBAMs. There is no agreed date yet.",
@@ -1153,7 +1190,7 @@ const DEFLINK=`<a class="src" href="https://taxation-customs.ec.europa.eu/carbon
 function isEUimp(){ const c=cinfo(S.country); return !!c&&c.cat==="EU"; }
 function originMsg(k,o,what){ const c=cinfo(S.country), dest=c?c.cat:"none", imp=c?(c.cat==="UK"?"the UK":c.n):"your country", pays=what==="sheet"?"sheet pays":"ingots pay";
   const ingE=k==="D"&&scen.E&&dest==="UK", ingD=k==="D"&&scen.D;
-  if(dest==="EU"){ if(o.cat==="EU") return `${o.n} is inside the EU. ${NM(k)} needs ${what} made outside the EU.`; return originText[o.cat]; }
+  if(dest==="EU"){ if(o.cat==="EU") return `${o.n} is inside the EU. ${k==="A"?"Imported sheet":"Only rolling operations in EU"} needs ${what} made outside the EU.`; return originText[o.cat]; }
   if(o.cat==="EU") return `${o.n} is in the EU, so the ${pays} the EU carbon price there (EU emission factors from step 3 are used).`+(dest==="UK"?" UK CBAM charges only the difference, from 2027.":` ${imp} has no CBAM on imports.`);
   if(k==="A"){ if(dest==="UK") return o.cat==="UK"?"Made and used in the UK, so no CBAM applies.":o.cat==="Exempt"?`${o.n} is linked to the EU ETS, so the carbon price already paid there is deducted from UK CBAM.`:"UK CBAM applies from 2027 on the embedded emissions, with verified supplier data or else EU default values until the UK publishes its own.";
     return `${imp} has no CBAM on imports, so there is no CBAM on this sheet.`; }
@@ -1190,10 +1227,12 @@ function required(){
   const c=cinfo(S.country);
   let ids=["baseYear","country","fx","tonnes","growth","mixP","mixR","mixL","euPrice","heatRef","heatRoll","anodeUse",...BENCH.map(b=>b[0])];
   EM.forEach(([k])=>TYPES.forEach(([t])=>ids.push(`em_${k}${t}`)));
-  if(ingOn()&&S.verifiedD!=="No") TYPES.forEach(([t])=>ids.push(`cb_Ing${t}`));
-  if(scen.A&&S.verified!=="No") TYPES.forEach(([t])=>ids.push(`cb_Sh${t}`));
-  if(ownNeeded()) ids.push("ownPrice","ownGrowth","fxGbp");
-  [["A","origin","verified"],["D","originD","verifiedD"]].forEach(([k,oid,vid])=>{ if(!(k==="D"?ingOn():scen[k])) return; ids.push(oid); const o=cinfo(S[oid]); if(!(o&&(o.cat==="Exempt"||o.cat==="EU"))){ ids.push(vid); } });
+  const oA=cinfo(S.origin), oD=cinfo(S.originD), ets=o=>!!o&&(o.cat==="EU"||o.cat==="Exempt");
+  const needA=scen.A&&!ets(oA)&&!(oA&&oA.cat==="UK"&&c&&c.cat==="UK"), needD=ingOn()&&!ets(oD)&&!(oD&&oD.cat==="UK"&&!scen.D);
+  if(needD&&S.verifiedD!=="No") TYPES.forEach(([t])=>ids.push(`cb_Ing${t}`));
+  if(needA&&S.verified!=="No") TYPES.forEach(([t])=>ids.push(`cb_Sh${t}`));
+  if(ownNeeded()) ids.push("ownPrice","ownGrowth","fxGbp",...UKB.map(b=>b[0]));
+  [["A","origin","verified"],["D","originD","verifiedD"]].forEach(([k,oid,vid])=>{ if(!(k==="D"?ingOn():scen[k])) return; ids.push(oid); if(k==="A"?needA:needD){ ids.push(vid); } });
   return ids;
 }
 function sums(){
@@ -1222,7 +1261,7 @@ function validate(){ sums();
   document.getElementById("toResults2").disabled=document.getElementById("toResults").disabled;
   if(typeof stepStatus==="function") stepStatus();
 }
-function refresh(){ try{ applyNames(); }catch(e){} visibility(); recalc(); if(typeof cbState==="function") cbState(); validate(); save(); }
+function refresh(){ try{ applyNames(); }catch(e){} try{ syncBasePrices(); }catch(e){} visibility(); recalc(); if(typeof cbState==="function") cbState(); validate(); save(); }
 
 function setVal(id,v){ S[id]=v; const el=document.getElementById(id); if(el) el.value=v??""; document.querySelectorAll(`input[type=radio][name="${id}"]`).forEach(r=>r.checked=(r.value===v)); }
 function autoCountry(){}
@@ -1233,7 +1272,7 @@ document.addEventListener("change",e=>{const id=e.target.dataset.id; if(id){S[id
   if(e.target.name==="pmode"){S.priceMode=e.target.value; refresh();}
 });
 document.addEventListener("click",e=>{
-  const u=e.target.dataset.use; if(u){setVal(u,F[u].dflt);refresh();}
+  const u=e.target.dataset.use; if(u){setVal(u,u==="euPrice"?euBaseDflt(num("baseYear")):u==="ownPrice"?ukBaseDflt(num("baseYear")):F[u].dflt);refresh();}
   const cb=e.target.dataset.usecb; if(cb){TYPES.forEach(([t])=>setVal(`cb_${cb}${t}`,F[`cb_${cb}${t}`].dflt));refresh();}
   const r=e.target.dataset.userow; if(r){TYPES.forEach(([t])=>setVal(`em_${r}${t}`,F[`em_${r}${t}`].dflt));refresh();}
 });
@@ -1258,12 +1297,22 @@ document.getElementById("originList").innerHTML=COUNTRIES.map(c=>`<option value=
 document.getElementById("cbFrom9").addEventListener("click",()=>{ TYPES.forEach(([t])=>{ const sm0=num(`em_sme${t}`), an=num(`em_ano${t}`)??0, sm=sm0==null?null:+(sm0+an).toFixed(4), ro=num(`em_rol${t}`); if(sm!=null){ setVal(`cb_Ing${t}`,sm); if(ro!=null) setVal(`cb_Sh${t}`,+(sm+ro).toFixed(4)); } }); refresh(); });
 refresh();
 // ================= RESULTS =================
-const SCN = {A:"Imported sheet: all operations outside the EU",B:"EU made: all operations in the EU",C:"EU smelted and rolled: alumina imported",D:"Imported ingot, EU rolled: only rolling in the EU",E:"Imported ingot, UK rolled: ingots imported into the UK and rolled there"};
-const SCN_EU={...SCN}, SCN_UK={A:"Imported sheet: all operations outside the UK",B:"EU made: all operations in the EU, sheet imported into the UK",C:"EU smelted and rolled: alumina imported, sheet imported into the UK",D:"Imported ingot, EU rolled: ingots rolled in the EU, sheet imported into the UK",E:"Imported ingot, UK rolled: ingots imported into the UK and rolled there"};
+function scenLines(k){ const c=cinfo(S.country), reg=c?(c.cat==="EU"?"EU":c.cat==="UK"?"UK":"none"):"EU", imp=c?(c.cat==="UK"?"the UK":(/^(United|Netherlands|Philippines|Czech|Dominican|Central African)/.test(c.n)?"the ":"")+c.n):"your country", ukP=reg==="UK"?", plus UK CBAM on the difference from 2027":"";
+  const L={
+    A:reg==="EU"?["All operations outside the EU","EU CBAM applies; no EU ETS"]:reg==="UK"?["All operations outside the UK","Sheet imported into the UK: UK CBAM applies from 2027"]:[`All operations outside ${imp}`,"No CBAM and no EU ETS"],
+    B:[reg==="UK"?"All operations in the EU, sheet shipped to the UK":"All operations in the EU",`EU ETS applies${reg==="UK"?ukP:"; no CBAM"}`],
+    C:[`Alumina imported; only smelting and rolling in the EU${reg==="UK"?", sheet shipped to the UK":""}`,`EU ETS applies (alumina is not a CBAM good)${reg==="UK"?ukP:"; no CBAM"}`],
+    D:[reg==="EU"?"Ingots made outside the EU; only rolling in the EU":`Ingots imported into the EU; only rolling in the EU, sheet shipped to ${imp}`,`EU CBAM on the ingots plus EU ETS on rolling${reg==="UK"?ukP:reg==="none"?`; no CBAM in ${imp}`:""}`],
+    E:["Ingots imported into the UK; only rolling in the UK","UK CBAM on the ingots from 2027, plus UK ETS on rolling"]};
+  return L[k]; }
+const SCN = {A:"Imported sheet: all operations outside the EU",B:"EU made: all operations in the EU",C:"EU smelted and rolled: alumina imported",D:"Only rolling operations in EU: only rolling in the EU",E:"Only rolling operations in UK: ingots imported into the UK and rolled there"};
+const SCN_EU={...SCN}, SCN_UK={A:"Imported sheet: all operations outside the UK",B:"EU made: all operations in the EU, sheet imported into the UK",C:"EU smelted and rolled: alumina imported, sheet imported into the UK",D:"Only rolling operations in EU: ingots rolled in the EU, sheet imported into the UK",E:"Only rolling operations in UK: ingots imported into the UK and rolled there"};
 const SCD_UK={A:"You import finished sheet into the UK and pay UK CBAM on it from 2027",B:"UK CBAM charges only the difference from the EU carbon price already paid",C:"Alumina is not a CBAM good; UK CBAM charges the difference on the sheet",D:"The EU roller pays EU CBAM on the ingots; UK CBAM charges the difference on the sheet",E:"The UK roller pays UK CBAM on the ingots from 2027, and UK ETS on the rolling"};
 function applyNames(){ const uk=isUK(S.country); Object.assign(SCN,uk?SCN_UK:SCN_EU);
-  { const le=document.getElementById("lab_E"); if(le) le.hidden=!uk; const h=document.getElementById("blkDh"); if(h) h.textContent=uk&&scen.E&&!scen.D?"Imported ingot, UK rolled: where the ingots are made":uk&&scen.E?"Imported ingots (EU rolled and UK rolled): where the ingots are made":"Imported ingot, EU rolled: where the ingots are made"; }
-  SCEN.forEach(([k,t,a,b])=>{ const el=document.getElementById("scd_"+k); if(el) el.textContent=uk?`${SCN_UK[k].split(": ")[1].replace(/^./,c=>c.toUpperCase())}. ${SCD_UK[k]}`:`${a}. ${b}`; }); }
+  { const le=document.getElementById("lab_E"); if(le) le.hidden=!uk; const h=document.getElementById("blkDh"); if(h) h.textContent=uk&&scen.E&&!scen.D?"Only rolling operations in UK: where the ingots are made":uk&&scen.E?"Imported ingots (EU rolled and UK rolled): where the ingots are made":"Only rolling operations in EU: where the ingots are made"; }
+  SCEN.forEach(([k])=>{ const ln=scenLines(k); SCN[k]=`${SHORT_NM[k]}: ${ln[0].replace(/^./,c=>c.toLowerCase())}`; const el=document.getElementById("scd_"+k); if(el) el.innerHTML=`<span class="sl">${ln[0]}</span><span class="sl">${ln[1]}</span>`; }); }
+const SHORT_NM={A:"Imported sheet",B:"EU made",C:"EU smelted and rolled",D:"Only rolling operations in EU",E:"Only rolling operations in UK"};
+try{ applyNames(); }catch(e){}
 function isDark(){ return false; }
 const DASH = {A:[],B:[6,4],C:[2,3],D:[10,4,2,4],E:[4,2]};
 const col = k => SERIES[k][isDark()?1:0];
@@ -1302,6 +1351,22 @@ function model(Wfn){
     rows.push({lab:"Total emissions charged under the EU ETS",u:"t CO2e/t",v:charged,b:true},{lab:"× EU carbon price",u:"USD/t CO2e",v:eu},{lab:"EU ETS cost passed through in the price",u:"USD/t",v:cost,b:true,tot:true});
     return {cost,rows};
   }
+  function etsUK(procs){
+    const rows=[]; let charged=arr(()=>0);
+    const yb=(a,b)=>arr((i,y)=>num(y<=2027?a:b)??0);
+    const PB={ano:{lab:"Anode production",B:yb("bUkAno27","bUkAno28").map(x=>x*num("anodeUse")),prim:true},sme:{lab:"Smelting",B:yb("bUkAl27","bUkAl28"),prim:true},rol:{lab:"Rolling",B:yb("bUkHeat27","bUkHeat28").map(x=>x*num("heatRoll")),prim:false}};
+    procs.forEach(p=>{ const E=arr(i=>ws(i,t=>num(`em_${p}${t}`))), B=arr(i=>PB[p].B[i]*(PB[p].prim?(W[i].P+W[i].L):1));
+      const ch=arr(i=>Math.max(0,E[i]-B[i]*ukShare[i])), above=arr(i=>Math.max(0,E[i]-B[i]));
+      rows.push({lab:`${PB[p].lab}: weighted emission factor`,u:"t CO2e/t",v:E},
+                {lab:`Less: UK ETS ${PB[p].lab.toLowerCase()} benchmark${PB[p].prim?" (primary and low carbon share)":""}`,u:"t CO2e/t",v:B.map(x=>-x)},
+                {lab:"Emissions above the benchmark",u:"t CO2e/t",v:above},
+                {lab:"Plus: benchmark share no longer free (UK phase out)",u:"t CO2e/t",v:arr(i=>Math.max(0,ch[i]-above[i]))},
+                {lab:"Emissions charged",u:"t CO2e/t",v:ch,b:true});
+      charged=charged.map((c,i)=>c+ch[i]); });
+    const cost=arr(i=>charged[i]*uk[i]);
+    rows.push({lab:"Total emissions charged under the UK ETS",u:"t CO2e/t",v:charged,b:true},{lab:"× UK carbon price",u:"USD/t CO2e",v:uk},{lab:"UK ETS cost passed through in the price",u:"USD/t",v:cost,b:true,tot:true});
+    return {cost,rows};
+  }
   function cbamImport(prod,oid,vid,did){
     const o=cinfo(S[oid]), rows=[], note=[];
     if(!o) return {cost:arr(()=>0),rows,note:["Enter the country in the Supply chains step."],missing:true};
@@ -1321,7 +1386,7 @@ function model(Wfn){
                 {lab:"Certificates needed per tonne",u:"t CO2e/t",v:charged,b:true});
     } else {
       const BD=sec?BS:BP; E=arr(i=>dvIn*(1+mk[i])); charged=arr(i=>Math.max(0,E[i]-BD*fa[i]));
-      note.push("EU default values do not depend on your mix, so changing the mix does not change this part of the cost.");
+      note.push("EU default values are the same for every type of aluminium, so your mix only changes this cost once you add verified supplier data.");
       rows.push({lab:"EU default value",u:"t CO2e/t",v:arr(()=>dvIn)},{lab:"Mark up on default value",u:"%",v:mk.map(m=>m*100)},
                 {lab:"Default value including mark up",u:"t CO2e/t",v:E},{lab:`Less: CBAM benchmark (${sec?"secondary":"primary"} route) × free allocation share`,u:"t CO2e/t",v:arr(i=>-BD*fa[i])},
                 {lab:"Certificates needed per tonne",u:"t CO2e/t",v:charged,b:true});
@@ -1329,36 +1394,45 @@ function model(Wfn){
     let cost=arr(i=>charged[i]*eu[i]*cbamOn[i]);
     rows.push({lab:"× EU CBAM certificate price",u:"USD/t CO2e",v:eu});
     let why2="";
-    if(o.cat==="UK"){ const paid=arr(i=>uk[i]*(1-ukShare[i])*E[i]); rows.push({lab:"Less: UK carbon price already paid (after UK free allowances)",u:"USD/t",v:paid.map(x=>-x)}); cost=cost.map((c,i)=>Math.max(0,c-paid[i])); note.push("UK origin: you pay the EU price minus the UK carbon price already paid, after UK free allowances, never below zero. The UK free allowance path is an assumption.");
+    let ukEts=null;
+    if(o.cat==="UK"){ ukEts=etsUK(prod==="Sh"?["ano","sme","rol"]:["ano","sme"]); const paid=ukEts.cost; rows.push({lab:"Less: UK carbon price already paid (UK ETS, see below)",u:"USD/t",v:paid.map(x=>-x)}); cost=cost.map((c,i)=>Math.max(0,c-paid[i])); note.push("UK origin: the UK maker pays the UK carbon price (UK ETS), built into the price, and EU CBAM charges the EU price minus that, never below zero.");
       if(cost.every(c=>c<=0)&&charged.some(c=>c>0)) why2=paidWhy; }
     rows.push({lab:"EU CBAM cost",u:"USD/t",v:cost,b:true,tot:true});
-    return {cost,rows,note,E,certs:arr(i=>charged[i]*cbamOn[i]),why:why2};
+    return {cost,rows,note,E,certs:arr(i=>charged[i]*cbamOn[i]),why:why2,ukEts};
   }
-  function ukCbam(Earr,paidArr,label){
-    const rate=arr(i=>uk[i]*(1-ukShare[i])*ukOn[i]), gross=Earr.map((e,i)=>e*rate[i]);
+  function ukCbam(Earr,paidArr,label,noThr){
+    const on=noThr?ys.map(y=>y>=2027?1:0):ukOn;
+    const rate=arr(i=>uk[i]*(1-ukShare[i])*on[i]), gross=Earr.map((e,i)=>e*rate[i]);
     const cost=gross.map((g,i)=>Math.max(0,g-(paidArr?paidArr[i]:0)));
-    const rows=[{lab:`Embedded emissions (${label})`,u:"t CO2e/t",v:Earr},{lab:"× UK CBAM rate (UK price × share not free), from 2027 and only above £50,000 of imports",u:"USD/t CO2e",v:rate},{lab:"UK CBAM before deduction",u:"USD/t",v:gross}];
+    const rows=[{lab:`Embedded emissions (${label})`,u:"t CO2e/t",v:Earr},{lab:noThr?"× UK CBAM rate (UK price × share not free), from 2027":"× UK CBAM rate (UK price × share not free), from 2027 and only above £50,000 of imports",u:"USD/t CO2e",v:rate},{lab:"UK CBAM before deduction",u:"USD/t",v:gross}];
     if(paidArr) rows.push({lab:"Less: EU carbon price already paid",u:"USD/t",v:paidArr.map(x=>-x)});
     rows.push({lab:"UK CBAM cost",u:"USD/t",v:cost,b:true,tot:true});
-    const why=ukWhy()||(cost.every(c=>c<=0)&&gross.some(g=>g>0)?paidWhy:"");
+    const why=(noThr?(ys.some(y=>y>=2027)?"":"No UK CBAM yet: it starts on 1 January 2027."):ukWhy())||(cost.every(c=>c<=0)&&gross.some(g=>g>0)?paidWhy:"");
     return {cost,rows,why};
   }
   const out={}, zero=arr(()=>0);
   if(scen.A){ let direct=zero, indA=zero, blocks=[], note=[], missing=false;
     let certs=null, why="";
-    if(regime==="EU"){ const r=cbamImport("Sh","origin","verified","defVal"); const ex50=tn.map(t=>t<50?0:1); direct=r.cost.map((c,i)=>c*ex50[i]); certs=r.certs?r.certs.map((c,i)=>c*ex50[i]):r.certs; why=r.why||""; blocks.push(["EU CBAM on imported sheet, paid by you",r.rows]); note=r.note; missing=r.missing;
-      if(ex50.some(x=>!x)){ note=(note||[]).concat(["Imports below 50 tonnes a year are exempt from EU CBAM (Regulation (EU) 2025/2083), so those years are zero."]); if(ex50.every(x=>!x)) why="No CBAM: you import less than 50 tonnes a year, which is exempt from EU CBAM."; } }
-    else if(regime==="UK"){ const o=cinfo(S.origin);
+    const oA=cinfo(S.origin), inEts=!!oA&&(oA.cat==="EU"||oA.cat==="Exempt");
+    if(inEts){ const eA=ets(["ano","sme","rol"]), E=arr(i=>ws(i,t=>num(`em_ano${t}`)+num(`em_sme${t}`)+num(`em_rol${t}`)));
+      const isEU=oA.cat==="EU", lbl=isEU?`Made in ${oA.n}, inside the EU`:`Made in ${oA.n}, whose carbon market is part of or linked to the EU ETS`;
+      indA=eA.cost;
+      if(regime==="UK"){ const r=ukCbam(E,eA.cost,"imported sheet"); direct=r.cost; why=r.why; blocks.push(["UK CBAM on imported sheet, paid by you",r.rows]);
+        note=[`${lbl}: the EU carbon price is already paid and built into the price, so UK CBAM charges only the difference.`].concat(ukOn[0]?[]:["UK CBAM starts on 1 January 2027, so 2026 is zero."]); }
+      else { if(regime==="EU") certs=zero;
+        why=regime==="EU"?`No CBAM: ${oA.n} ${isEU?"is in the EU":"is exempt from EU CBAM"}, so its makers pay the EU carbon price instead, built into the price.`:`No CBAM: ${M_imp_name()} has no CBAM on imports. The sheet is made in ${oA.n}, so the EU carbon cost is in the price.`;
+        note=[`${lbl}, so its makers pay the EU carbon price (EU ETS) instead of CBAM, and this is built into the price you pay.`]; }
+      if(!isEU) note.push(`For ${oA.n}, the EU ETS price, benchmarks and EU emission factors are used as an approximation of the carbon cost its makers pay.`);
+      blocks.push([`EU ETS cost of making the sheet${isEU?" in the EU":""}, built into the price`,eA.rows]); }
+    else if(regime==="EU"){ const r=cbamImport("Sh","origin","verified","defVal"); const ex50=tn.map(t=>t<50?0:1); direct=r.cost.map((c,i)=>c*ex50[i]); certs=r.certs?r.certs.map((c,i)=>c*ex50[i]):r.certs; why=r.why||""; blocks.push(["EU CBAM on imported sheet, paid by you",r.rows]); note=r.note; missing=r.missing; if(r.ukEts){ indA=r.ukEts.cost; blocks.push(["UK ETS cost of making the sheet in the UK, built into the price",r.ukEts.rows]); }
+      if(ex50.some(x=>!x)){ note=(note||[]).concat(["Imports below 50 tonnes a year are exempt from EU CBAM (Regulation (EU) 2025/2083), so those years are zero. The 50 tonnes count all the CBAM goods your company imports, not only this aluminium."]); if(ex50.every(x=>!x)) why="No CBAM: you import less than 50 tonnes a year, which is exempt from EU CBAM."; } }
+    else if(regime==="UK"){ const o=oA;
       if(!o){ missing=true; note=["Enter the country in the Supply chains step."]; }
-      else if(o.cat==="UK"){ note=["Made in the UK and used in the UK, so no CBAM applies."]; why="No CBAM: the sheet is made and used in the UK."; }
+      else if(o.cat==="UK"){ const u=etsUK(["ano","sme","rol"]); indA=u.cost; blocks.push(["UK ETS cost of making the sheet in the UK, built into the price",u.rows]); note=["Made in the UK and used in the UK, so no CBAM applies. The UK maker pays the UK carbon price (UK ETS), built into the price."]; why="No CBAM: the sheet is made and used in the UK."; }
       else { const dv=num("defVal"), useDef=S.verified==="No"&&dv!=null&&o.cat==="Full";
-        const euO=o.cat==="EU", eA=euO?ets(["ano","sme","rol"]):null;
-        const E=euO?arr(i=>ws(i,t=>num(`em_ano${t}`)+num(`em_sme${t}`)+num(`em_rol${t}`))):useDef?arr(i=>dv*(1+mk[i])):arr(i=>ws(i,t=>num(`cb_Sh${t}`)));
-        const paid=euO?eA.cost:o.cat==="Exempt"?arr(i=>eu[i]*ph[i]*E[i]):null;
-        if(euO){ indA=eA.cost; blocks.push(["EU ETS cost of making the sheet in the EU, built into the price",eA.rows]); }
-        const r=ukCbam(E,paid,"imported sheet"); direct=r.cost; why=r.why; blocks.unshift(["UK CBAM on imported sheet, paid by you",r.rows]); note=[euO?`Made in ${o.n}, inside the EU: the EU carbon price is already paid, so UK CBAM charges only the difference.`:useDef?"UK CBAM: EU default values are used until the UK publishes its own.":o.cat==="Exempt"?`${o.n} is linked to the EU ETS: the EU carbon price already paid is deducted.`:"UK CBAM uses your verified emission factors."].concat(ukOn[0]?[]:["UK CBAM starts on 1 January 2027, so 2026 is zero."]); } }
-    else { const o=cinfo(S.origin); note=["No CBAM applies to imports into this country."]; why=`No CBAM: ${M_imp_name()} has no CBAM on imports.`;
-      if(o&&o.cat==="EU"){ const eA=ets(["ano","sme","rol"]); indA=eA.cost; blocks.push(["EU ETS cost of making the sheet in the EU, built into the price",eA.rows]); why+=` The sheet is made in ${o.n}, so the EU carbon cost is in the price.`; } }
+        const E=useDef?arr(()=>dv):arr(i=>ws(i,t=>num(`cb_Sh${t}`)));
+        const r=ukCbam(E,null,"imported sheet"); direct=r.cost; why=r.why; blocks.unshift(["UK CBAM on imported sheet, paid by you",r.rows]); note=[useDef?"UK CBAM: EU default values, without the EU mark up, are used until the UK publishes its own.":"UK CBAM uses your verified emission factors."].concat(ukOn[0]?[]:["UK CBAM starts on 1 January 2027, so 2026 is zero."]); } }
+    else { note=["No CBAM applies to imports into this country."]; why=`No CBAM: ${M_imp_name()} has no CBAM on imports.`; if(oA&&oA.cat==="UK"){ const u=etsUK(["ano","sme","rol"]); indA=u.cost; blocks.push(["UK ETS cost of making the sheet in the UK, built into the price",u.rows]); why+=" The sheet is made in the UK, so the UK carbon cost is in the price."; } }
     out.A={direct,indirect:indA,cbam:regime==="none"?null:direct,payer:"Paid directly by your company when the sheet is imported",blocks,note,missing,certs,why,certNote:regime==="EU"?"":regime==="UK"?"UK CBAM (paid to HMRC), not EU certificates":"No CBAM on imports into this country"}; }
   ["B","C"].forEach(k=>{ if(!scen[k]) return;
     const e=ets(k==="B"?["ref","ano","sme","rol"]:["ano","sme","rol"]); const blocks=[["EU ETS cost built into the price",e.rows]]; let direct=zero, ukw=""; const note=[];
@@ -1367,37 +1441,37 @@ function model(Wfn){
     out[k]={direct,indirect:e.cost,cbam:regime==="UK"?direct:null,why:ukw,payer:"Paid directly by your company (UK CBAM on sheet from the EU)",
       noWhy:k==="B"?"No CBAM: everything is made in the EU, so it pays the EU ETS instead.":"No CBAM: alumina is not a CBAM good, and smelting and rolling in the EU pay the EU ETS instead.",blocks,note}; });
   const oDi=cinfo(S.originD);
-  if(scen.D&&regime!=="EU"&&oDi&&oDi.cat==="EU"){ const e=ets(["ano","sme","rol"]), E=arr(i=>ws(i,t=>num(`em_ano${t}`)+num(`em_sme${t}`)+num(`em_rol${t}`)));
+  if(scen.D&&oDi&&(oDi.cat==="EU"||oDi.cat==="Exempt")){ const e=ets(["ano","sme","rol"]), E=arr(i=>ws(i,t=>num(`em_ano${t}`)+num(`em_sme${t}`)+num(`em_rol${t}`))), dEU=oDi.cat==="EU";
     const r=regime==="UK"?ukCbam(E,e.cost,"sheet made in the EU"):null;
-    out.D={direct:r?r.cost:zero,indirect:e.cost,cbam:r?r.cost:null,payer:"Paid directly by your company when the sheet enters the UK",blocks:(r?[["UK CBAM on sheet imported from the EU, paid by you",r.rows]]:[]).concat([["EU ETS cost of smelting and rolling in the EU, built into the price",e.rows]]),
-      note:[`The ingots are made in ${oDi.n}, inside the EU, so they pay the EU carbon price instead of EU CBAM.${r?" UK CBAM charges only the difference, from 2027.":""}`].concat(r&&r.why?[r.why]:[]),missing:false,why:r?(r.why||""):`No CBAM: the ingots are made in the EU and ${M_imp_name()} has no CBAM on imports.`,noWhy:"",certs:null,certNote:r?"UK CBAM (paid to HMRC), not EU certificates":"No CBAM"}; }
+    out.D={direct:r?r.cost:zero,indirect:e.cost,cbam:r?r.cost:(regime==="EU"?zero:null),payer:r?"Paid directly by your company when the sheet enters the UK":"No CBAM: the EU carbon price is built into the price",blocks:(r?[["UK CBAM on sheet imported from the EU, paid by you",r.rows]]:[]).concat([["EU ETS cost of smelting and rolling in the EU, built into the price",e.rows]]),
+      note:[`The ingots are made in ${oDi.n}, ${dEU?"inside the EU":"whose carbon market is part of or linked to the EU ETS"}, so they pay the EU carbon price instead of EU CBAM.${r?" UK CBAM charges only the difference, from 2027.":""}`].concat(dEU?[]:[`For ${oDi.n}, the EU ETS price and EU emission factors are used as an approximation of the carbon cost its smelters pay.`],r&&r.why?[r.why]:[]),missing:false,why:r?(r.why||""):regime==="EU"?`No CBAM: the ingots are made in ${oDi.n}, ${dEU?"inside the EU":"which is exempt from EU CBAM"}, so the EU carbon price is paid instead.`:`No CBAM: the ingots are made in ${oDi.n} and ${M_imp_name()} has no CBAM on imports.`,noWhy:"",certs:regime==="EU"?zero:null,certNote:r?"UK CBAM (paid to HMRC), not EU certificates":"No CBAM"}; }
   else if(scen.D){ const e=ets(["rol"]), c=cbamImport("Ing","originD","verifiedD","defValD");
-    const blocks=[["EU ETS cost of rolling in the EU, built into the price",e.rows],["EU CBAM on ingots, paid by the EU roller and built into the price",c.rows]]; let direct=zero;
-    if(regime==="UK"&&!c.missing){ const exD=oDi&&oDi.cat==="Exempt", Eing=exD?arr(i=>ws(i,t=>num(`cb_Ing${t}`))):arr(i=>c.E?c.E[i]:0);
-      const E=arr(i=>ws(i,t=>num(`em_rol${t}`))+Eing[i]); const r=ukCbam(E,e.cost.map((x,i)=>x+c.cost[i]+(exD?eu[i]*ph[i]*Eing[i]:0)),"sheet rolled in the EU"); direct=r.cost; if(r.why) c.note=(c.note||[]).concat([r.why]); blocks.unshift(["UK CBAM on sheet imported from the EU, paid by you",r.rows]); }
-    out.D={direct,indirect:e.cost.map((x,i)=>x+c.cost[i]),cbam:c.cost.map((x,i)=>x+direct[i]),payer:"Paid by your EU roller when it imports the ingots, then passed on to you in the price",blocks,note:c.note,missing:c.missing,why:c.why?c.why.replace("No CBAM:","No CBAM on the ingots:"):"",certs:c.certs||null,certNote:"Bought by the EU roller and passed on in the price"}; }
+    const blocks=[["EU ETS cost of rolling in the EU, built into the price",e.rows],["EU CBAM on ingots, paid by the EU roller and built into the price",c.rows]].concat(c.ukEts?[["UK ETS cost of making the ingots in the UK, built into the price",c.ukEts.rows]]:[]); let direct=zero; const ukI=c.ukEts?c.ukEts.cost:zero;
+    if(regime==="UK"&&!c.missing){ const dvD=num("defValD"), noVer=S.verifiedD==="No"&&dvD!=null, Eing=arr(i=>noVer?dvD:(c.E?c.E[i]:0));
+      const E=arr(i=>ws(i,t=>num(`em_rol${t}`))+Eing[i]); const r=ukCbam(E,e.cost.map((x,i)=>x+c.cost[i]+ukI[i]),"sheet rolled in the EU"); direct=r.cost; if(r.why) c.note=(c.note||[]).concat([r.why]); blocks.unshift(["UK CBAM on sheet imported from the EU, paid by you",r.rows]); }
+    out.D={direct,indirect:e.cost.map((x,i)=>x+c.cost[i]+ukI[i]),cbam:c.cost.map((x,i)=>x+direct[i]),payer:regime==="UK"?"EU CBAM on the ingots is paid by your EU roller and passed on in the price; UK CBAM on the sheet is paid directly by your company from 2027":"Paid by your EU roller when it imports the ingots, then passed on to you in the price",payShort:regime==="UK"?"partly paid by your EU roller (EU CBAM on the ingots, passed on in the price) and partly by your company (UK CBAM on the sheet)":"",cbLab:regime==="UK"?"CBAM cost (EU CBAM via the EU roller plus UK CBAM paid by you)":"",blocks,note:c.note,missing:c.missing,why:c.why?c.why.replace("No CBAM:","No CBAM on the ingots:"):"",certs:c.certs||null,certNote:"Bought by the EU roller and passed on in the price"}; }
   if(scen.E&&regime==="UK"){ const oE=cinfo(S.originD);
     if(!oE) out.E={direct:zero,indirect:zero,cbam:null,blocks:[],note:["Enter where the ingots come from in the Supply chains step."],missing:true};
-    else { const net=arr(i=>uk[i]*(1-ukShare[i])), rolE=arr(i=>ws(i,t=>num(`em_rol${t}`))), rollCost=arr(i=>rolE[i]*net[i]);
-      const rollRows=[{lab:"Rolling emissions",u:"t CO2e/t",v:rolE},{lab:"× UK carbon price × share not free",u:"USD/t CO2e",v:net},{lab:"UK ETS cost of rolling",u:"USD/t",v:rollCost,b:true,tot:true}];
+    else { const ukMade=oE.cat==="UK", uE=etsUK(ukMade?["ano","sme","rol"]:["rol"]), rollCost=uE.cost, rollRows=uE.rows;
       let cb=zero, rows=[], why="", note=[], euIng=zero; const ing=[];
       if(oE.cat==="UK"){ why="No CBAM: the ingots are made in the UK."; }
       else { let Eing, paid=null;
-        if(oE.cat==="EU"){ Eing=arr(i=>ws(i,t=>num(`em_ano${t}`)+num(`em_sme${t}`))); paid=ets(["ano","sme"]).cost; euIng=paid; note.push(`The ingots are made in ${oE.n}, inside the EU, so the EU carbon price is already paid and UK CBAM charges only the difference.`); ing.push(["EU ETS cost of making the ingots in the EU, built into the price",ets(["ano","sme"]).rows]); }
-        else { const dv=num("defValD"), useDef=S.verifiedD==="No"&&dv!=null&&oE.cat==="Full"; Eing=useDef?arr(i=>dv*(1+mk[i])):arr(i=>ws(i,t=>num(`cb_Ing${t}`)));
-          if(oE.cat==="Exempt") paid=arr(i=>eu[i]*ph[i]*Eing[i]); note.push(useDef?"UK CBAM on the ingots uses the EU default value, because the UK has not published its own.":"UK CBAM on the ingots uses your verified emission factors."); }
-        const r=ukCbam(Eing,paid,"imported ingots"); cb=r.cost; rows=r.rows; why=r.why; out._eE=Eing; }
-      note.push("UK ETS on rolling uses the same assumed UK free allowance path as UK CBAM.");
+        if(oE.cat==="EU"||oE.cat==="Exempt"){ const eI=ets(["ano","sme"]); Eing=arr(i=>ws(i,t=>num(`em_ano${t}`)+num(`em_sme${t}`))); paid=eI.cost; euIng=paid; note.push(`The ingots are made in ${oE.n}, ${oE.cat==="EU"?"inside the EU":"whose carbon market is part of or linked to the EU ETS"}, so the EU carbon price is already paid and UK CBAM charges only the difference.`); ing.push([`EU ETS cost of making the ingots${oE.cat==="EU"?" in the EU":` in ${oE.n}`}, built into the price`,eI.rows]); }
+        else { const dv=num("defValD"), useDef=S.verifiedD==="No"&&dv!=null&&oE.cat==="Full"; Eing=useDef?arr(()=>dv):arr(i=>ws(i,t=>num(`cb_Ing${t}`)));
+          note.push(useDef?"UK CBAM on the ingots uses the EU default value, without the EU mark up, because the UK has not published its own.":"UK CBAM on the ingots uses your verified emission factors."); }
+        note.push("UK CBAM on the ingots is paid by the UK roller, so your own £50,000 threshold does not apply to it.");
+        const r=ukCbam(Eing,paid,"imported ingots",true); cb=r.cost; rows=r.rows; why=r.why; out._eE=Eing; }
+      note.push(ukMade?"The ingots are made in the UK, so UK ETS applies to smelting, anodes and rolling, using UK benchmarks and the UK phase out of free allowances.":"UK ETS on rolling uses the UK heat benchmark and the UK phase out of free allowances.");
       out.E={direct:zero,indirect:arr(i=>cb[i]+rollCost[i]+euIng[i]),cbam:cb,payer:"Paid by your UK roller when it imports the ingots, then passed on to you in the price",
-        blocks:(rows.length?[["UK CBAM on ingots, paid by the UK roller and built into the price",rows]]:[]).concat(ing,[["UK ETS cost of rolling in the UK, built into the price",rollRows]]),
+        blocks:(rows.length?[["UK CBAM on ingots, paid by the UK roller and built into the price",rows]]:[]).concat(ing,[[ukMade?"UK ETS cost of making and rolling the ingots in the UK, built into the price":"UK ETS cost of rolling in the UK, built into the price",rollRows]]),
         note,missing:false,why,certs:null,certNote:"UK CBAM is paid to HMRC by the UK roller, not with EU certificates"}; } }
   { const em=p=>arr(i=>ws(i,t=>num(`em_${p}${t}`))), cbE=pr=>arr(i=>ws(i,t=>num(`cb_${pr}${t}`)));
-    const defE=(vid,did)=>{const d=num(did); return S[vid]==="No"&&d!=null?arr(i=>d*(1+mk[i])):null;};
-    if(out.A) out.A.emis=defE("verified","defVal")||cbE("Sh");
+    const defE=(vid,did)=>{const d=num(did); return S[vid]==="No"&&d!=null?arr(i=>d*(1+(regime==="UK"?0:mk[i]))):null;};
+    if(out.A){ const oA=cinfo(S.origin); out.A.emis=oA&&(oA.cat==="EU"||oA.cat==="Exempt")?arr(i=>em("ano")[i]+em("sme")[i]+em("rol")[i]):(defE("verified","defVal")||cbE("Sh")); }
     if(out.B) out.B.emis=arr(i=>em("ref")[i]+em("ano")[i]+em("sme")[i]+em("rol")[i]);
     if(out.C) out.C.emis=arr(i=>em("ano")[i]+em("sme")[i]+em("rol")[i]);
     if(out.E) out.E.emis=arr(i=>(out._eE?out._eE[i]:0)+em("rol")[i]);
-    if(out.D) out.D.emis=arr(i=>(defE("verifiedD","defValD")||cbE("Ing"))[i]+em("rol")[i]); }
+    if(out.D){ const oD=cinfo(S.originD); out.D.emis=oD&&(oD.cat==="EU"||oD.cat==="Exempt")?arr(i=>em("ano")[i]+em("sme")[i]+em("rol")[i]):arr(i=>(defE("verifiedD","defValD")||cbE("Ing"))[i]+em("rol")[i]); } }
   delete out._eE; Object.values(out).forEach(o=>o.total=o.direct.map((d,i)=>d+o.indirect[i]));
   const tonnes=ys.map((y,i)=>num("tonnes")*Math.pow(1+num("growth")/100,i));
   return {ys,out,fx,regime,imp,tonnes,w:today,W};
@@ -1419,8 +1493,9 @@ const npv=(r,vals)=>vals.reduce((a,v)=>a+v,0); // plain total: the tool no longe
 if(window.Chart){ Chart.defaults.font.family="'IBM Plex Sans','Segoe UI',Arial,sans-serif"; Chart.defaults.font.size=12.5; Chart.defaults.color="#566676"; }
 const moneyC=v=>{ if(v==null||isNaN(v)) return ""; const c=cur==="EUR"?"€":"$", a=Math.abs(v); const t=a>=1e9?(a/1e9).toFixed(1)+"B":a>=1e6?(a/1e6).toFixed(1)+"M":a>=1e4?(a/1e3).toFixed(0)+"k":a.toFixed(0); return v<0?`(${c}${t})`:c+t; };
 const moneyW=v=>{ const c=cur==='EUR'?'€':'$', a=Math.abs(v); const t=a>=1e9?(a/1e9).toFixed(1)+' billion':a>=1e6?(a/1e6).toFixed(1)+' million':Math.round(a).toLocaleString('en-US'); return c+t; };
-const SHORT={A:"Imported sheet",B:"EU made",C:"EU smelted and rolled",D:"Imported ingot, EU rolled",E:"Imported ingot, UK rolled"};
+const SHORT={A:"Imported sheet",B:"EU made",C:"EU smelted and rolled",D:"Only rolling operations in EU",E:"Only rolling operations in UK"};
 const NM=k=>SHORT[k];
+const wrapL=(t,m=16)=>{ const w=String(t).split(" "), L=[]; let c=""; w.forEach(x=>{ if(c&&(c+" "+x).length>m){ L.push(c); c=x; } else c=c?c+" "+x:x; }); if(c) L.push(c); return L.length>1?L:t; };
 const nmS=k=>SCN[k].split(": ")[1];
 const valLabels={id:"valLabels",afterDatasetsDraw(c,a,o){ if(!o||!o.on) return; const ctx=c.ctx; ctx.save(); ctx.font="600 12.5px 'IBM Plex Sans',Arial,sans-serif"; ctx.fillStyle="#14212e";
   c.data.datasets.forEach((d,di)=>{ if(c.getDatasetMeta(di).hidden) return; c.getDatasetMeta(di).data.forEach((el,i)=>{ const v=d.data[i]; if(v==null) return; const t=o.fmt(v);
@@ -1440,11 +1515,11 @@ const val=o=>isCb()?(o.cbam||o.total.map(()=>0)):o.total;
 function routeOf(k,M){ const imp=M.imp?(M.imp.cat==="UK"?"the UK":M.imp.n):"your country", oA=cinfo(S.origin), oD=cinfo(S.originD), nA=oA?oA.n:"another country", nD=oD?oD.n:"another country";
   const toImp=M.regime==="EU"?[]:[`sheet shipped to ${imp}`], uk=M.regime==="UK";
   const R={
-    A:{p:[`Sheet made in ${nA}`,`shipped to ${imp}`],w:M.regime==="EU"?`EU CBAM on the sheet, paid by you when it enters ${imp}.`:uk?`UK CBAM on the sheet, paid by you, from 1 January 2027.${oA&&(oA.cat==="EU"||oA.cat==="Exempt")?` ${nA} already pays the EU carbon price, so only the difference is charged.`:""}`:`${imp} has no CBAM, so there is no CBAM on the sheet.`},
+    A:{p:[`Sheet made in ${nA}`,`shipped to ${imp}`],w:oA&&(oA.cat==="EU"||oA.cat==="Exempt")&&!uk?`No CBAM on the sheet: ${nA} ${oA.cat==="EU"?"is in the EU":"is part of or linked to the EU ETS"}, so the EU carbon cost (EU ETS) is built into the price.`:M.regime==="EU"?`EU CBAM on the sheet, paid by you when it enters ${imp}.`:uk?`UK CBAM on the sheet, paid by you, from 1 January 2027.${oA&&(oA.cat==="EU"||oA.cat==="Exempt")?` ${nA} already pays the EU carbon price, so only the difference is charged.`:""}`:`${imp} has no CBAM, so there is no CBAM on the sheet.`},
     B:{p:["Alumina, ingots and sheet all made in the EU",...toImp],w:`EU ETS cost built into the price.${uk?" UK CBAM charges only the difference from the EU carbon price, from 2027.":""}`},
     C:{p:["Alumina from outside the EU","smelted and rolled in the EU",...toImp],w:`EU ETS cost built into the price. Alumina is not a CBAM good.${uk?" UK CBAM charges only the difference from the EU carbon price, from 2027.":""}`},
-    D:{p:[`Ingots made in ${nD}`,"rolled in the EU",...toImp],w:`${oD&&oD.cat==="EU"?"EU ETS on smelting and rolling":"EU CBAM on the ingots, paid by the EU roller, plus EU ETS on rolling"}, built into the price.${uk?" UK CBAM charges only the difference when the sheet enters the UK, from 2027.":""}`},
-    E:{p:[`Ingots made in ${nD}`,"shipped to the UK","rolled in the UK"],w:"UK CBAM on the ingots from 2027, paid by the UK roller, plus UK ETS on rolling, built into the price."}};
+    D:{p:[`Ingots made in ${nD}`,"rolled in the EU",...toImp],w:`${oD&&(oD.cat==="EU"||oD.cat==="Exempt")?"EU ETS on smelting and rolling":"EU CBAM on the ingots, paid by the EU roller, plus EU ETS on rolling"}, built into the price.${uk?" UK CBAM charges only the difference when the sheet enters the UK, from 2027.":""}`},
+    E:{p:[`Ingots made in ${nD}`,"shipped to the UK","rolled in the UK"],w:oD&&oD.cat==="UK"?"No CBAM: the ingots are made in the UK. UK ETS on rolling is built into the price.":`UK CBAM on the ingots from 2027, paid by the UK roller${oD&&(oD.cat==="EU"||oD.cat==="Exempt")?" (only the difference from the EU carbon price already paid)":""}, plus UK ETS on rolling, built into the price.`}};
   const r=R[k]; if(!r) return "";
   return `<div class="route"><div class="steps">${r.p.join(" → ")}</div><p><b>Carbon cost:</b> ${r.w}</p>${uk&&M.ys[0]<=2026&&k!=="B"&&k!=="C"?`<p class="rnote">UK CBAM starts on 1 January 2027, so ${M.ys[0]} has no UK CBAM.</p>`:""}</div>`; }
 let rsYearOpen=null;
@@ -1468,7 +1543,7 @@ function rsSummary(M,mat){
   if(!keys.length){ box.innerHTML='<h2>Key findings</h2><p class="lead">Add the missing inputs to see your results.</p>'; return {tot,sorted,n}; }
   if(isCb()){ const none=keys.filter(k=>noCb(out[k])).map(NM);
     const lead=!sorted.length?`None of your supply chains pays CBAM here. Their carbon cost is the EU ETS, shown under Total carbon cost.`
-      :sorted.map(k=>`<b>${NM(k)}</b>: <b>${moneyW(conv(tot[k],fx))}</b> of CBAM over ${ys[0]} to ${ys[n-1]}, ${k==="D"&&!(out[k].certNote||"").startsWith("UK")?"paid by your EU roller and passed on in the price":k==="E"?"paid by your UK roller and passed on in the price":"paid directly by your company"}.`).join(" ")+(none.length?` No CBAM for ${none.length>1?none.slice(0,-1).join(", ")+" or "+none[none.length-1]:none[0]}.`:"");
+      :sorted.map(k=>`<b>${NM(k)}</b>: <b>${moneyW(conv(tot[k],fx))}</b> of CBAM over ${ys[0]} to ${ys[n-1]}, ${out[k].payShort?out[k].payShort:k==="D"&&!(out[k].certNote||"").startsWith("UK")?"paid by your EU roller and passed on in the price":k==="E"?"paid by your UK roller and passed on in the price":"paid directly by your company"}.`).join(" ")+(none.length?` No CBAM for ${none.length>1?none.slice(0,-1).join(", ")+" or "+none[none.length-1]:none[0]}.`:"");
     box.innerHTML=`<h2>Key findings: CBAM only</h2><p class="lead">${lead}</p>`; return {tot,sorted,n}; }
   const lo=sorted[0], hi=sorted[sorted.length-1];
   const y34=ys.indexOf(2034), endTxt=y34>=0&&M.regime==="EU"?", reaching the full carbon price in 2034 when free allowances end":"";
@@ -1486,7 +1561,7 @@ function rsCta(M){
   const btn=`<button class="btn go lg goMix" type="button">Compare low emission aluminium →</button>`;
   el.innerHTML = best&&best.v>0.5
     ? `<div><h3>How much would switching to low emission aluminium save?</h3><p>Recycled aluminium carries far fewer embedded emissions than primary. Every tonne you switch cuts the carbon cost by up to <b>${money(conv(best.v,fx))} per tonne</b> in ${ys[i]} (${NM(best.k)}). Compare the switch year by year.</p></div>${btn}`
-    : `<div><h3>Switching will not change CBAM here yet</h3><p>Your scenarios use EU default values, which are the same whatever you buy. Ask suppliers for verified emissions data, then compare the switch to see the real saving.</p></div>${btn}`;
+    : `<div><h3>Unlock the saving with verified supplier data</h3><p>Your imported supply chains use EU default values, which do not reflect the type of aluminium you buy. With verified supplier data, a switch to recycled aluminium lowers your CBAM cost. Compare the switch year by year.</p></div>${btn}`;
 }
 function rsBarChart(M,pickFn){
   const {ys,out,fx}=M, keys=Object.keys(out).filter(k=>!out[k].missing), n=Math.min(10,ys.length);
@@ -1495,7 +1570,7 @@ function rsBarChart(M,pickFn){
   document.getElementById("rsBarNote").textContent=`${lab} for all aluminium bought, ${ys[0]} to ${ys[n-1]}, added up (not discounted). Lowest at the top.`;
   if(chartBar) chartBar.destroy(); if(!window.Chart) return;
   document.getElementById("rsBarWrap").style.height=Math.max(160,70+sorted.length*56)+"px";
-  chartBar=new Chart(document.getElementById("rsBar"),{type:"bar",data:{labels:sorted.map(k=>SHORT[k]),datasets:[{data:sorted.map(k=>Math.round(conv(t[k],fx))),backgroundColor:sorted.map(col),borderRadius:4,barPercentage:.8,categoryPercentage:.85}]},
+  chartBar=new Chart(document.getElementById("rsBar"),{type:"bar",data:{labels:sorted.map(k=>wrapL(SHORT[k])),datasets:[{data:sorted.map(k=>Math.round(conv(t[k],fx))),backgroundColor:sorted.map(col),borderRadius:4,barPercentage:.8,categoryPercentage:.85}]},
     options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,layout:{padding:{right:70}},
       plugins:{legend:{display:false},valLabels:{on:true,fmt:moneyC},tooltip:{callbacks:{label:c=>money(c.parsed.x)}}},
       scales:{x:{beginAtZero:true,ticks:{color:"#566676",callback:v=>moneyC(v),maxTicksLimit:5},grid:{color:"#e3eaf0"}},y:{ticks:{color:"#14212e",font:{size:12.5}},grid:{display:false}}}},plugins:[valLabels]});
@@ -1510,8 +1585,8 @@ function extraResults(M,mat){
   const n5=Math.min(5,ys.length), n10=Math.min(10,ys.length);
   // 1 present value
   document.getElementById("rsNpv").innerHTML=`<thead><tr><th>Cost for all aluminium bought</th><th>Total, ${ys[0]} to ${ys[n5-1]}</th><th>Total, ${ys[0]} to ${ys[n10-1]}</th><th>Average cost per tonne, ${ys[0]} to ${ys[n10-1]}</th></tr></thead><tbody>`+
-    keys.map(k=>{const v=out[k].total.map((x,i)=>x*M.tonnes[i]); return `<tr><td><span class="sw" style="background:${col(k)}"></span> ${SCN[k]}</td><td>${money(conv(npv(r,v.slice(0,n5)),fx))}</td><td>${money(conv(npv(r,v.slice(0,n10)),fx))}</td><td>${money(conv(out[k].total.slice(0,n10).reduce((a,b)=>a+b,0)/n10,fx),2)}</td></tr>`;}).join("")+`</tbody>`;
-  document.getElementById("rsNpvNote").textContent="Each year's cost added up, not discounted.";
+    keys.map(k=>{const v=out[k].total.map((x,i)=>x*M.tonnes[i]); return `<tr><td><span class="sw" style="background:${col(k)}"></span> ${SCN[k]}</td><td>${money(conv(npv(r,v.slice(0,n5)),fx))}</td><td>${money(conv(npv(r,v.slice(0,n10)),fx))}</td><td>${money(conv(npv(r,v.slice(0,n10))/(M.tonnes.slice(0,n10).reduce((a,b)=>a+b,0)||1),fx),2)}</td></tr>`;}).join("")+`</tbody>`;
+  document.getElementById("rsNpvNote").textContent="Each year's cost added up, not discounted. The average per tonne is the total divided by all tonnes bought, so years with more tonnes count more.";
   // 2 blended supply
   const box=document.getElementById("rsBlendIn"), {sh,tot}=blendShares(keys);
   if(box.dataset.key!==keys.join("")){ box.innerHTML=keys.map(k=>`<label class="blend"><span class="sw" style="background:${col(k)}"></span>${SCN[k].split(":")[0]}<input type="number" min="0" max="100" step="1" data-blend="${k}" value="${S["bl_"+k]??""}" placeholder="${fmt(100/keys.length,0)}"><span class="unit">%</span></label>`).join(""); box.dataset.key=keys.join(""); }
@@ -1536,9 +1611,11 @@ function renderResults(){
     document.getElementById("rsMix").textContent=`You keep buying today's mix every year: ${pc(M.w.P)} primary, ${pc(M.w.R)} recycled and ${pc(M.w.L)} low carbon aluminium. Your aluminium arrives in ${M.imp?M.imp.n:"your country"}, ${reg}.`; }
   // tiles
   const mid=Math.min(4,ys.length-1);
-  document.getElementById("rsTitle").textContent=`Your ${isCb()?"CBAM":"total carbon"} cost for aluminium over ${Math.min(10,ys.length)} years`;
+  document.getElementById("rsTitle").textContent=`Supply chain comparison: your ${isCb()?"CBAM":"total carbon"} cost over ${Math.min(10,ys.length)} years`;
+  document.getElementById("rsHow").innerHTML=`<b>How to read this page:</b> each supply chain scenario is worked out as if <b>all ${fmt(M.tonnes[0],0)} t</b> of aluminium you buy in ${ys[0]} came through that route. Use it to compare the routes side by side. To see your total when you buy through several routes at once, go to <a href="#" data-nav="5">Supply mix</a>. ${isCb()?"You are looking at <b>CBAM only</b>; click <b>Total carbon cost</b> below to add the carbon price built into the metal.":"This page shows your <b>total carbon cost</b>: CBAM plus the carbon price built into the metal (EU ETS, and UK ETS for rolling in the UK). To see CBAM only, click <b>CBAM only</b> below."}`;
   const SUM=rsSummary(M,null); rsCta(M);
   { const order=[...SUM.sorted,...keys.filter(k=>!SUM.sorted.includes(k))], many=SUM.sorted.length>1, L=ys.length-1;
+    document.getElementById("rsTiles").classList.toggle("c5",order.length>=5);
     document.getElementById("rsTiles").innerHTML=order.map((k,ri)=>{ const o=out[k], v=val(o);
       const bdg=many&&k===SUM.sorted[0]?`<span class="badge low">Lowest ${isCb()?"CBAM":"cost"}</span>`:many&&k===SUM.sorted[SUM.sorted.length-1]?`<span class="badge high">Highest ${isCb()?"CBAM":"cost"}</span>`:"";
       const head=`<div class="rc-top"><span class="rc-rank" style="background:${col(k)}">${o.missing?"!":ri+1}</span><div class="rc-name"><b>${NM(k)}</b><small>${nmS(k)}</small>${bdg}</div></div>`;
@@ -1569,7 +1646,7 @@ function renderResults(){
     h+=`<tr class="grp"><td colspan="${ys.length+1}"><span class="sw" style="background:${col(k)}"></span> ${SCN[k]}</td></tr>`;
     if(o.missing){ h+=`<tr><td colspan="${ys.length+1}" style="text-align:left;color:var(--warn)">Incomplete: add the EU default value in the calculations below.</td></tr>`; return; }
     const cb=o.cbam||o.total.map(()=>0), et=o.total.map((x,i)=>x-cb[i]);
-    [[o.cbam?(k==="D"&&!(o.certNote||"").startsWith("UK")?"CBAM cost (paid by the EU roller, built into the price)":k==="E"?"CBAM cost (paid by the UK roller, built into the price)":"CBAM cost (paid by your company)"):"CBAM cost (no CBAM)",cb],[k==="E"?"EU and UK ETS cost (built into the price)":"EU ETS cost (built into the price)",et],["Total carbon cost per tonne",o.total,true]].forEach(([l,v,b])=>h+=`<tr${b?' class="tot"':""}><td>${l}</td>${v.map(x=>`<td>${money(conv(x,fx),2)}</td>`).join("")}</tr>`);
+    [[o.cbam?(o.cbLab?o.cbLab:k==="D"&&!(o.certNote||"").startsWith("UK")?"CBAM cost (paid by the EU roller, built into the price)":k==="E"?"CBAM cost (paid by the UK roller, built into the price)":"CBAM cost (paid by your company)"):"CBAM cost (no CBAM)",cb],[k==="E"?"EU and UK ETS cost (built into the price)":"EU ETS cost (built into the price)",et],["Total carbon cost per tonne",o.total,true]].forEach(([l,v,b])=>h+=`<tr${b?' class="tot"':""}><td>${l}</td>${v.map(x=>`<td>${money(conv(x,fx),2)}</td>`).join("")}</tr>`);
     h+=`<tr><td>Total for all aluminium bought</td>${o.total.map((x,i)=>`<td>${money(conv(x*M.tonnes[i],fx))}</td>`).join("")}</tr>`;
   });
   document.getElementById("rsTable").innerHTML=h+"</tbody>";
@@ -1665,7 +1742,7 @@ function renderMix(){
   const last=ys.length-1, mid=Math.min(4,last);
   { const usesDef=[["A","verified","defVal"],["D","verifiedD","defValD"],["E","verifiedD","defValD"]].filter(([k,v,d])=>(k==="E"?eOn():scen[k])&&S[v]==="No"&&num(d)!=null).map(([k])=>NM(k));
     const el=document.getElementById("p3Why"); el.hidden=!usesDef.length;
-    if(usesDef.length) el.innerHTML=`<b>${usesDef.length>1?usesDef.slice(0,-1).join(", ")+" and "+usesDef[usesDef.length-1]:usesDef[0]} ${usesDef.length>1?"use":"uses"} EU default values, so your mix makes no difference to ${usesDef.length>1?"their":"its"} CBAM cost.</b> To see the saving, answer Yes to verified supplier data on the input page and enter the real emission factors.`; }
+    if(usesDef.length) el.innerHTML=`<b>${usesDef.length>1?usesDef.slice(0,-1).join(", ")+" and "+usesDef[usesDef.length-1]:usesDef[0]} ${usesDef.length>1?"use":"uses"} EU default values, so the CBAM saving from your switch is not counted yet.</b> Add verified supplier data (answer Yes on the input page and enter the real emission factors) to capture it.`; }
   const PSx={P:priceSeries("pPrim"),R:priceSeries("pRec"),L:priceSeries("pLow")}, td=mixToday();
   const exM=ys.map((y,i)=>{const m=path[i],s=(m.P+m.R+m.L)||100;return (m.P*PSx.P[i]+m.R*PSx.R[i]+Math.max(0,m.L)*PSx.L[i])/s-(td.P*PSx.P[i]+td.R*PSx.R[i]+td.L*PSx.L[i])/100;});
   const RES={}; keys.forEach(k=>{ const b=BAU.out[k].total, nw=NEW.out[k].total;
@@ -1675,18 +1752,19 @@ function renderMix(){
   // headline
   { const box=document.getElementById("p3Key"), T=path[last];
     if(!keys.length){ box.innerHTML='<p class="lead">Pick at least one scenario on the input page.</p>'; }
-    else { const r=RES[bestK], mixTxt=`${fmt(T.P,0)}% primary, ${fmt(T.R,0)}% recycled, ${fmt(T.L,0)}% low carbon by ${ys[last]}`;
-      const noChange=keys.every(k=>Math.abs(RES[k].save)<1);
+    else { const noCh0=keys.every(k=>Math.abs(RES[k].save)<1), dK=RES[bestK].save>=1||noCh0?bestK:keys.reduce((a,k)=>RES[k].save<RES[a].save?k:a,keys[0]); const r=RES[dK], mixTxt=`${fmt(T.P,0)}% primary, ${fmt(T.R,0)}% recycled, ${fmt(T.L,0)}% low carbon by ${ys[last]}`;
+      const noChange=noCh0;
       const lead=noChange
         ? `With your plan (${mixTxt}), the carbon cost does not change yet. Move the sliders above, or answer Yes to verified supplier data on the input page so each type of aluminium is charged on its real emissions.`
-        : `With your plan (${mixTxt}), you save <b>${moneyW(conv(r.save,fx))}</b> in carbon costs over ${ys[0]} to ${ys[last]} in the <b>${NM(bestK)}</b> supply chain.`;
+        : r.save>=1 ? `With your plan (${mixTxt}), you save <b>${moneyW(conv(r.save,fx))}</b> in carbon costs over ${ys[0]} to ${ys[last]} in the <b>${NM(dK)}</b> supply chain.`
+        : `With your plan (${mixTxt}), the carbon cost goes <b>up by ${moneyW(conv(-r.save,fx))}</b> over ${ys[0]} to ${ys[last]} in the <b>${NM(dK)}</b> supply chain. Check the emission factors you entered: the new mix is charged more than today's.`;
       const st=(k,v,sub,cls="")=>`<div class="kstat"><span class="k">${k}</span><span class="v ${cls}">${v}</span><span class="s">${sub}</span></div>`;
-      const bN=BAU.out[bestK].total[last], nN=NEW.out[bestK].total[last];
+      const bN=BAU.out[dK].total[last], nN=NEW.out[dK].total[last];
       box.innerHTML=`<h2>What the switch does</h2><p class="lead">${lead}</p><div class="kstats">`+
-        st("Carbon saving",moneyC(conv(r.save,fx)),`${NM(bestK)}, ${ys[0]} to ${ys[last]}`,r.save>0?"good":"")+
-        st(`Saved per tonne in ${ys[mid]}`,money(conv(BAU.out[bestK].total[mid]-NEW.out[bestK].total[mid],fx)),`${NM(bestK)}`,"good")+
-        st(`Cost per tonne in ${ys[last]}`,money(conv(nN,fx)),`Instead of ${money(conv(bN,fx))} with today's mix (${NM(bestK)})`)+
-        st("Emissions avoided",fmt(RES[bestK].emis)+" t",`t CO2e, ${NM(bestK)}, ${ys[0]} to ${ys[last]}`)+`</div>`; } }
+        st(r.save>=0?"Carbon saving":"Extra carbon cost",moneyC(conv(Math.abs(r.save),fx)),`${NM(dK)}, ${ys[0]} to ${ys[last]}`,r.save>=1?"good":r.save<=-1?"bad":"")+
+        (d=>st(d>=0?`Saved per tonne in ${ys[mid]}`:`Extra cost per tonne in ${ys[mid]}`,money(conv(Math.abs(d),fx)),`${NM(dK)}`,d>0?"good":d<0?"bad":""))(BAU.out[dK].total[mid]-NEW.out[dK].total[mid])+
+        st(`Cost per tonne in ${ys[last]}`,money(conv(nN,fx)),`Instead of ${money(conv(bN,fx))} with today's mix (${NM(dK)})`)+
+        st(RES[dK].emis>=0?"Emissions avoided":"Extra emissions",fmt(Math.abs(RES[dK].emis))+" t",`t CO2e, ${NM(dK)}, ${ys[0]} to ${ys[last]}`)+`</div>`; } }
   document.getElementById("p3Mini").innerHTML=keys.length?`<thead><tr><th>Supply chain</th><th>Saved per t, ${ys[mid]}</th><th>Carbon cost saving, total</th></tr></thead><tbody>`+
     [...keys].sort((x,y)=>RES[y].save-RES[x].save).map(k=>{ const b=BAU.out[k].total, nw=NEW.out[k].total, net=RES[k].net;
       return `<tr><td><span class="sw" style="background:${col(k)}"></span> ${NM(k)}${k===bestK&&keys.length>1&&RES[k].save>1?' <span class="badge low" style="margin-left:6px">Biggest saving</span>':""}</td><td>${money(conv(b[mid]-nw[mid],fx))}</td><td style="font-weight:600">${moneyC(conv(RES[k].save,fx))}</td></tr>`; }).join("")+`</tbody>`
@@ -1708,10 +1786,10 @@ function renderMix(){
     // savings bar
     document.getElementById("p3BarNote").textContent=`Carbon cost saving for all aluminium bought, ${ys[0]} to ${ys[last]}, added up.`;
     if(chart3b) chart3b.destroy();
-    chart3b=new Chart(document.getElementById("p3Bar"),{type:"bar",data:{labels:keys.map(k=>{const w=SHORT[k].split(" "); if(w.length<2) return SHORT[k]; const h=Math.ceil(w.length/2); return [w.slice(0,h).join(" "),w.slice(h).join(" ")];}),datasets:[
+    chart3b=new Chart(document.getElementById("p3Bar"),{type:"bar",data:{labels:keys.map(k=>wrapL(SHORT[k],12)),datasets:[
         {label:"Carbon cost saving",data:keys.map(k=>Math.round(conv(RES[k].save,fx))),backgroundColor:keys.map(col),borderRadius:4,maxBarThickness:70}]},
       options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:22}},plugins:{legend:{display:false},valLabels:{on:true,fmt:moneyC},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${money(c.parsed.y)}`}}},
-        scales:{y:{ticks:{color:ink,callback:v=>moneyC(v),maxTicksLimit:6},grid:{color:grid}},x:{ticks:{color:"#14212e",maxRotation:0,autoSkip:false},grid:{display:false}}}},plugins:[valLabels]}); }
+        scales:{y:{suggestedMin:0,suggestedMax:keys.every(k=>Math.abs(RES[k].save)<1)?1000:undefined,ticks:{color:ink,callback:v=>moneyC(v),maxTicksLimit:6},grid:{color:grid}},x:{ticks:{color:"#14212e",maxRotation:0,autoSkip:false,font:{size:11.5}},grid:{display:false}}}},plugins:[valLabels]}); }
   else document.getElementById("p3ChartWrap").innerHTML='<p class="chip">The chart library could not load. The table below shows the same numbers.</p>';
   const PS={P:priceSeries("pPrim"),R:priceSeries("pRec"),L:priceSeries("pLow")}, today=mixToday();
   const matB=ys.map((y,i)=>(today.P*PS.P[i]+today.R*PS.R[i]+today.L*PS.L[i])/100);
@@ -1724,7 +1802,7 @@ function renderMix(){
     h+=`<tr class="tot"><td>Your new mix</td>${nw.map(x=>`<td>${money(conv(x,fx),2)}</td>`).join("")}</tr>`;
     h+=`<tr><td>Saving per tonne</td>${b.map((x,i)=>`<td>${money(conv(x-nw[i],fx),2)}</td>`).join("")}</tr>`;
     h+=`<tr><td>Carbon cost saving for all aluminium bought</td>${b.map((x,i)=>`<td>${money(conv((x-nw[i])*BAU.tonnes[i],fx))}</td>`).join("")}</tr>`;
-    const nt=(NEW.out[k].note||[]).filter(t=>t.includes("do not depend on your mix"));
+    const nt=(NEW.out[k].note||[]).filter(t=>t.includes("only changes this cost once"));
     if(nt.length) h+=`<tr><td colspan="${ys.length+1}" style="text-align:left;white-space:normal;color:var(--warn)">${nt[0]}</td></tr>`;
   });
   document.getElementById("p3Table").innerHTML=h+"</tbody>";
@@ -1769,8 +1847,8 @@ const _sp=showPage; showPage=function(n){ _sp(n); syncPrice(); };
 document.addEventListener("input",e=>{ const k=e.target.dataset&&e.target.dataset.blend; if(k){ S["bl_"+k]=e.target.value; save(); renderResults(); if(!document.getElementById("viewMix").hidden) renderMix(); } });
 
 // ================= PAGE 5: SUPPLY MIX =================
-const SUPT={A:"Imported sheet",B:"EU made",C:"EU smelted and rolled",D:"Imported ingot, EU rolled",E:"Imported ingot, UK rolled"};
-let SUP=null, cmpP="A", cmpAll=false, cmpYi=0, chartSup=null, chartCmp=null;
+const SUPT={A:"Imported sheet",B:"EU made",C:"EU smelted and rolled",D:"Only rolling operations in EU",E:"Only rolling operations in UK"};
+let SUP=null, cmpP="A", cmpAll=false, cmpYi=0, cmpYiUser=false, chartSup=null, chartCmp=null;
 try{ SUP=JSON.parse(localStorage.getItem("cbamSupplyV1")||"null"); }catch(e){}
 function supDefault(){ const ks=["A","B","C","D","E"].filter(k=>k==="E"?eOn():scen[k]); const n=ks.length||1, base=Math.floor(100/n);
   return ks.map((k,i)=>({t:k,c:k==="A"?(S.origin||""):k==="D"||k==="E"?(S.originD||""):"",sh:i===n-1?100-base*(n-1):base})); }
@@ -1782,17 +1860,21 @@ function lineOver(t,c){ // inputs that make scenario t use country c
   const same=o&&cinfo(S[A?"origin":"originD"])&&cinfo(S[A?"origin":"originD"]).n===o.n&&S[A?"verified":"verifiedD"]==="Yes";
   const dv=d?(A?d.sh:d.ing):"", rt=d&&(A?d.shR:d.ingR)==="L"?"Secondary":"Primary";
   return A?{origin:c,verified:same?"Yes":"No",defVal:dv,defRoute:rt}:{originD:c,verifiedD:same?"Yes":"No",defValD:dv,defRouteD:rt}; }
-function lineCost(row,base){ const t=row.t;
-  if(t==="B"||t==="C"){ const o=base.out[t]; return {total:o.total,cbam:o.cbam,src:"EU ETS"}; }
+function thrTonnes(rows,base){ // tonnes your company imports itself, used only for the 50 t and £50,000 tests
+  const pos=rows.filter(r=>+r.sh>0), tot=pos.reduce((a,r)=>a+(+r.sh),0); if(!tot) return null;
+  const imp=pos.filter(r=>base.regime==="EU"?r.t==="A":base.regime==="UK"?["A","B","C","D"].includes(r.t)&&!(r.t==="A"&&isUK(r.c)):false).reduce((a,r)=>a+(+r.sh),0);
+  return (num("tonnes")??0)*imp/tot; }
+function lineCost(row,base,thrT){ const t=row.t, tov=thrT==null?{}:{tonnes:thrT};
+  if(t==="B"||t==="C"){ const o=(thrT==null?base:runWith(tov)).out[t]; return {total:o.total,cbam:o.cbam,src:"EU ETS"}; }
   if(!row.c||!cinfo(row.c)) return null;
-  const ov=lineOver(t,row.c), M=runWith(ov), o=M.out[t]; if(!o) return null;
+  const ov=lineOver(t,row.c), M=runWith({...ov,...tov}), o=M.out[t]; if(!o) return null;
   const ver=ov.verified==="Yes"||ov.verifiedD==="Yes", ci=cinfo(row.c);
   return {total:o.total,cbam:o.cbam,why:o.why,src:ci.cat==="Exempt"?(base.regime==="EU"?"Exempt":"EU ETS linked"):ci.cat==="EU"?"In the EU":ver?"Your verified data":"EU default value",ver}; }
 function supRows(){ if(!SUP||!SUP.length) SUP=supDefault(); return SUP; }
 function renderSupply(){
   const base=runWith({}), {ys,fx}=base, n=Math.min(10,ys.length), T=base.tonnes, rows=supRows(), uLab=cur==="EUR"?"EUR":"USD";
   const shTot=rows.reduce((a,r)=>a+(+r.sh||0),0);
-  const L=rows.map(r=>lineCost(r,base));
+  const thrT=thrTonnes(rows,base), L=rows.map(r=>lineCost(r,base,thrT));
   const sum10=v=>v?v.slice(0,n).reduce((a,x,i)=>a+x*T[i],0):0;
   // table
   const opts=k=>Object.entries(SUPT).filter(([v])=>v!=="E"||isUK(S.country)||k==="E").map(([v,l])=>`<option value="${v}" ${v===k?"selected":""}>${l}</option>`).join("");
@@ -1820,13 +1902,13 @@ function renderSupply(){
   const key=document.getElementById("supKey");
   if(!valid.length){ key.innerHTML='<h2>Your blended carbon cost</h2><p class="lead">Add at least one supplier with a share above 0%.</p>'; }
   else { const top=contrib[0];
-    key.innerHTML=`<h2>Your blended carbon cost</h2><p class="lead">With this mix, carbon costs on the aluminium you buy add up to <b>${moneyW(conv(tot10,fx))}</b> over ${ys[0]} to ${ys[n-1]}, of which <b>${moneyW(conv(cb10,fx))}</b> is CBAM. <b>${nm(top.x)}</b> drives ${fmt(100*top.v/(tot10||1),0)}% of it with ${fmt(100*w(top.x),0)}% of your purchases.</p>
+    key.innerHTML=`<h2>Your total carbon cost across all supply chains</h2><p class="lead">With this mix, carbon costs on the aluminium you buy add up to <b>${moneyW(conv(tot10,fx))}</b> over ${ys[0]} to ${ys[n-1]}, of which <b>${moneyW(conv(cb10,fx))}</b> is CBAM. <b>${nm(top.x)}</b> drives ${fmt(100*top.v/(tot10||1),0)}% of it with ${fmt(100*w(top.x),0)}% of your purchases.</p>
     <div class="kstats">${st(`Cost per tonne, ${ys[0]}`,money(conv(blend[0],fx),2),"Blended across your suppliers")+st(`Cost per tonne, ${ys[Math.min(4,ys.length-1)]}`,money(conv(blend[Math.min(4,ys.length-1)],fx),2),"As free allowances shrink")+st(`${n} year total`,moneyC(conv(tot10,fx)),`All aluminium bought, ${ys[0]} to ${ys[n-1]}`)+st("Of which CBAM",moneyC(conv(cb10,fx)),`${fmt(100*cb10/(tot10||1),0)}% of the total; the rest is the carbon price paid by producers`)}</div>`; }
   // contribution bar
   document.getElementById("supBarNote").textContent=`Each supplier's part of your carbon cost, ${ys[0]} to ${ys[n-1]}, all aluminium bought. Biggest at the top.`;
   if(chartSup) chartSup.destroy();
   if(window.Chart&&contrib.length){ document.getElementById("supBarWrap").style.height=Math.max(140,60+contrib.length*48)+"px";
-    chartSup=new Chart(document.getElementById("supBar"),{type:"bar",data:{labels:contrib.map(c=>{const r=c.x.r, cn=r.c&&cinfo(r.c)?cinfo(r.c).n:""; return `${r.t==="A"?"Sheet from "+cn:r.t==="D"?"Ingot from "+cn+", EU rolled":r.t==="E"?"Ingot from "+cn+", UK rolled":SUPT[r.t]} (${fmt(100*w(c.x),0)}%)`;}),datasets:[{data:contrib.map(c=>Math.round(conv(c.v,fx))),backgroundColor:contrib.map(c=>col(c.x.r.t)),borderRadius:4,barPercentage:.8,categoryPercentage:.85}]},
+    chartSup=new Chart(document.getElementById("supBar"),{type:"bar",data:{labels:contrib.map(c=>{const r=c.x.r, cn=r.c&&cinfo(r.c)?cinfo(r.c).n:""; return wrapL(`${r.t==="A"?"Sheet from "+cn:r.t==="D"?"Ingot from "+cn+", EU rolled":r.t==="E"?"Ingot from "+cn+", UK rolled":SUPT[r.t]} (${fmt(100*w(c.x),0)}%)`,20);}),datasets:[{data:contrib.map(c=>Math.round(conv(c.v,fx))),backgroundColor:contrib.map(c=>col(c.x.r.t)),borderRadius:4,barPercentage:.8,categoryPercentage:.85}]},
       options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,layout:{padding:{right:70}},plugins:{legend:{display:false},valLabels:{on:true,fmt:moneyC},tooltip:{callbacks:{label:c=>money(c.parsed.x)}}},
       scales:{x:{beginAtZero:true,ticks:{callback:v=>moneyC(v),maxTicksLimit:5},grid:{color:"#e3eaf0"}},y:{ticks:{color:"#14212e"},grid:{display:false}}}},plugins:[valLabels]}); }
   // country comparison data (EU default values, no verified data)
@@ -1841,15 +1923,16 @@ function renderSupply(){
     const full=CMP[k].filter(c=>cinfo(c.c).cat==="Full").sort((a,b)=>sum10(a.v)-sum10(b.v)), best=full[0];
     if(best&&cinfo(best.c).n!==cinfo(x.r.c).n&&mine-sum10(best.v)>1) TS.push({v:w(x)*(mine-sum10(best.v)),h:`<b>Look at other countries for your ${k==="A"?"sheet":"ingots"}.</b> Under EU default values, ${best.c} is the cheapest country with full CBAM: ${money(conv(best.v[mid],fx))} per tonne in ${ys[mid]} against ${money(conv(x.l.total[mid],fx))} from ${cinfo(x.r.c).n}. On your ${fmt(100*w(x),0)}% share that saves about <b class="good">${moneyW(conv(w(x)*(mine-sum10(best.v)),fx))}</b> over ${n} years.`});
     const vo=lineOver(k,x.r.c); if(k==="A") vo.verified="Yes"; else vo.verifiedD="Yes"; const vv=sum10(runWith(vo).out[k].total);
-    if(mine-vv>1) TS.push({v:w(x)*(mine-vv),h:`<b>Ask your ${k==="A"?"sheet":"ingot"} supplier in ${cinfo(x.r.c).n} for verified emissions data.</b> If their real emissions match the emission factors you entered, this line costs about <b class="good">${moneyW(conv(w(x)*(mine-vv),fx))}</b> less over ${n} years, because the EU default value adds a mark up on top of the country average.`}); });
+    if(mine-vv>1) TS.push({v:w(x)*(mine-vv),h:`<b>Ask your ${k==="A"?"sheet":"ingot"} supplier in ${cinfo(x.r.c).n} for verified emissions data.</b> If their real emissions match the emission factors you entered, this line costs about <b class="good">${moneyW(conv(w(x)*(mine-vv),fx))}</b> less over ${n} years, because the EU default value for that country${base.regime==="UK"&&k!=="D"?"":", plus its mark up,"} is higher than the emission factors you entered.`}); });
   TS.sort((a,b)=>b.v-a.v).slice(0,4).forEach(t=>tips.push(t.h));
-  if(base.regime==="EU"&&valid.some(x=>x.r.t!=="B"&&x.r.t!=="C")) tips.push(`<b>Some countries pay no CBAM at all.</b> Norway, Iceland, Liechtenstein and Switzerland are linked to the EU ETS, so metal from them is exempt.`);
+  if(base.regime==="EU"&&valid.some(x=>x.r.t!=="B"&&x.r.t!=="C")) tips.push(`<b>Some countries pay no CBAM at all.</b> Norway, Iceland, Liechtenstein and Switzerland are part of or linked to the EU ETS, so metal from them is exempt from CBAM. Their makers pay the EU carbon price instead, so the total cost is close to EU made metal, not zero.`);
   if(base.regime==="none") tips.unshift(`<b>${base.imp?base.imp.n:"Your country"} has no CBAM on imports</b>, so imported sheet shows no CBAM here. Imported ingot still carries the CBAM your EU roller pays.`);
-  tips.push(`<b>Switch towards recycled aluminium.</b> It has the lowest direct emissions. See the Low emission switch page for the saving; it needs verified supplier data to show on imported metal.`);
+  tips.push(`<b>Switch towards recycled aluminium.</b> It has the lowest direct emissions, so its carbon cost falls most as free allocation ends between 2030 and 2034. On imported metal it is charged against a much lower CBAM benchmark, so the saving is small in the early years, and it only shows with verified supplier data. See the Low emission switch page.`);
   document.getElementById("supTips").innerHTML=tips.map(t=>`<li>${t}</li>`).join("");
   renderCmp(CMP,base,rows);
 }
 function renderCmp(CMP,base,rows){
+  if(!cmpYiUser) cmpYi=base.regime==="UK"&&base.ys[0]<2027?Math.min(4,base.ys.length-1):0;
   const {ys,fx}=base, yi=Math.min(cmpYi,ys.length-1), list=CMP[cmpP].map(c=>({...c,y:c.v[yi]})).sort((a,b)=>a.y-b.y);
   const mine=new Set(rows.filter(r=>r.t===cmpP&&r.c&&cinfo(r.c)).map(r=>cinfo(r.c).n));
   const yb=[0,Math.min(4,ys.length-1),ys.indexOf(2034)].filter((v,i,a)=>v>=0&&a.indexOf(v)===i);
@@ -1861,7 +1944,7 @@ function renderCmp(CMP,base,rows){
   if(window.Chart) chartCmp=new Chart(document.getElementById("cmpBar"),{type:"bar",data:{labels:shown.map(c=>mine.has(c.c)?`★ ${c.c}`:c.c),datasets:[{data:shown.map(c=>+conv(c.y,fx).toFixed(2)),backgroundColor:shown.map(c=>mine.has(c.c)?col(cmpP):col(cmpP)+"55"),borderRadius:3,barPercentage:.85,categoryPercentage:.9}]},
     options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,layout:{padding:{right:60}},plugins:{legend:{display:false},valLabels:{on:true,fmt:v=>money(v)},tooltip:{callbacks:{label:c=>`${money(c.parsed.x,2)} per tonne in ${ys[yi]}`}}},
     scales:{x:{beginAtZero:true,title:{display:true,text:`${cur==="EUR"?"EUR":"USD"} per tonne, ${ys[yi]}`},ticks:{callback:v=>money(v),maxTicksLimit:6},grid:{color:"#e3eaf0"}},y:{ticks:{color:"#14212e",font:{size:12}},grid:{display:false}}}},plugins:[valLabels]});
-  document.getElementById("cmpEx").textContent=(cmpP==="D"?"Includes the EU ETS cost of rolling in the EU. ":"")+"Countries with a low value are those the EU treats as secondary (recycled) producers. "+(base.regime==="EU"?"Norway, Iceland, Liechtenstein and Switzerland are exempt and pay nothing.":"")+(base.regime==="none"&&cmpP==="A"?" Your country has no CBAM on imports, so imported sheet is zero everywhere.":"");
+  document.getElementById("cmpEx").textContent=(cmpP==="D"?"Includes the EU ETS cost of rolling in the EU. ":"")+"Countries with a low value have a low EU default value for this product. "+(base.regime==="EU"?"Norway, Iceland, Liechtenstein and Switzerland are exempt from CBAM; their makers pay the EU carbon price instead, which is built into the price.":"")+(base.regime==="none"&&cmpP==="A"?" Your country has no CBAM on imports, so imported sheet is zero everywhere.":"");
 }
 let supT=null; const supLater=()=>{ clearTimeout(supT); supT=setTimeout(renderSupply,250); };
 document.addEventListener("input",e=>{ const el=e.target; if(el.dataset.sup==null) return; const i=+el.dataset.sup, f=el.dataset.f, rows=supRows();
@@ -1870,7 +1953,7 @@ document.addEventListener("change",e=>{ if(e.target.dataset.sup!=null&&e.target.
 document.addEventListener("click",e=>{ const d=e.target.closest("[data-supdel]"); if(d){ supRows().splice(+d.dataset.supdel,1); supSave(); renderSupply(); return; }
   const p=e.target.closest("[data-cmpp]"); if(p){ cmpP=p.dataset.cmpp; document.querySelectorAll("[data-cmpp]").forEach(b=>b.setAttribute("aria-pressed",b===p)); renderSupply(); return; }
   const a=e.target.closest("[data-cmpa]"); if(a){ cmpAll=a.dataset.cmpa==="1"; document.querySelectorAll("[data-cmpa]").forEach(b=>b.setAttribute("aria-pressed",b===a)); renderSupply(); return; }
-  const y=e.target.closest("[data-cmpy]"); if(y){ cmpYi=+y.dataset.cmpy; renderSupply(); } });
+  const y=e.target.closest("[data-cmpy]"); if(y){ cmpYi=+y.dataset.cmpy; cmpYiUser=true; renderSupply(); } });
 document.getElementById("supAdd").addEventListener("click",()=>{ supRows().push({t:"A",c:"",sh:0}); supSave(); renderSupply(); });
 document.getElementById("supReset").addEventListener("click",()=>{ SUP=supDefault(); supSave(); renderSupply(); });
 
@@ -1891,6 +1974,17 @@ document.addEventListener("click",e=>{ const b=e.target.closest("[data-nav]"); i
 { const _sp2=showPage; showPage=function(n){ _sp2(n); document.querySelectorAll(".topnav [data-nav]").forEach(b=>{ if(b.tagName==="BUTTON") b.setAttribute("aria-current",+b.dataset.nav===n?"page":"false"); }); }; }
 setStep(1); stepStatus(); showPage(0);
 
+// ---- latest CBAM certificate price from prices.json (kept up to date by a GitHub Action); falls back to the saved value
+(async()=>{ const st=document.getElementById("cpStatus");
+  try{ if(!/github\.io$/.test(location.hostname)) throw 0; const r=await fetch("prices.json",{cache:"no-store"}); if(!r.ok) throw 0; const j=await r.json(), q=(j.cbam||[]).filter(x=>x.price>0);
+    const y0=+(S.baseYear||YEARS_FROM), inYear=q.filter(x=>String(x.q).endsWith(String(y0))); if(!inYear.length) throw 0;
+    const avg=+(inYear.reduce((a,x)=>a+x.price,0)/inYear.length).toFixed(2), old=F.euPrice.dflt;
+    F.euPrice.dflt=avg; F.euPrice.src=[`European Commission, ${inYear.map(x=>`${x.q} €${x.price.toFixed(2)}`).join(", ")}; average ${avg} (updated ${j.updated})`,SRC.ec[1]];
+    if((num("baseYear")??2026)<=2026&&(S.euPrice==null||S.euPrice===""||+S.euPrice===old)) setVal("euPrice",avg); const ch=document.querySelector("#row_euPrice .chip"); if(ch) ch.outerHTML=chip(F.euPrice); refresh();
+    st.style.borderColor="var(--green)"; st.innerHTML=`<b style="color:var(--green)">Latest CBAM price loaded.</b> ${inYear.map(x=>`${x.q}: €${x.price.toFixed(2)}`).join(" · ")}. Average for ${y0}: €${avg}. Checked ${j.updated}.`;
+    if(!document.getElementById("viewResults").hidden) renderResults();
+  }catch(e){ st.className="callout"; st.innerHTML=`Using the saved CBAM price: €${fmt(F.euPrice.dflt,2)} (average of the quarters published by 5 October 2026). On the live website the latest published price loads automatically.`; }
+})();
 // ---- live exchange rate (European Central Bank reference rate via Frankfurter); falls back to the saved value
 (async()=>{
   const st=document.getElementById("fxStatus"), ECB="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html";
